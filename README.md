@@ -91,7 +91,7 @@ The releases are the compiled version of Shark.
 ---
 
 ## How to compile your own version of Shrak
- 1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0 RC1  
+ 1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0  
     All NSIS dependancies used are included in the `nsis_contrib`, `nsis_include` and `nsis_plugin` folders
  2. Edit modules or create new ones in the `build\modules` folder. Modules have an `*.nsh` extension
  4. Compile the `build.nsi` script and you'll get a `shark.exe` installer
