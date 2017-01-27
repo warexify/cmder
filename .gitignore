@@ -1,8 +1,9 @@
 *.bak
-*.exe
+build/build.exe
 config/kitty/Jumplist
 config/kitty/Sessions
 config/kitty/SshHostKeys
 debug_shark_installer.nsi
+shark.exe
 Thumbs.db
 _right click/
