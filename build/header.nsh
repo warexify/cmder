@@ -106,7 +106,7 @@ Section "-pre_section"
   Var /GLOBAL DIR_installer
   Var /GLOBAL DIR_modules
 
-  StrCpy $DIR_bin   "$INSTDIR\bin"
+  StrCpy $DIR_bin         "$INSTDIR\bin"
   StrCpy $DIR_config      "$INSTDIR\config"
   StrCpy $DIR_icons       "$INSTDIR\icons"
   StrCpy $DIR_installer   "$INSTDIR\installer"
