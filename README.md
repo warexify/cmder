@@ -1,5 +1,4 @@
 # shark
-##### Create the shell environment of your dreams  
 This project started as a fork of [Cmder](http://cmder.net) and became its own full fledge version allowing users to select which components they want to include in their installation.
 It still uses the structure design of [Cmder](http://cmder.net) to keep the benefits of the updated its scripts.
 
@@ -42,7 +41,7 @@ The releases are the compiled version of Shark.
  - [Cmder](http://cmder.net) ([repo](https://github.com/cmderdev/cmder))
  - [MinTTY](http://mintty.github.io) ([repo](https://github.com/mintty/mintty))
  - [Package manager for Cygwin](http://stackoverflow.com/questions/9260014/how-do-i-install-cygwin-components-from-the-command-line/23143997#23143997)
- - Sage ([repo](https://github.com/svnpenn/sage)
+ - Sage ([repo](https://github.com/svnpenn/sage))
 
 ---
 
