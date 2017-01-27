@@ -1,18 +1,8 @@
-
-## Those files should be taken from their repositary
-
-vendor/*/*
-!vendor/*
-!vendor/psmodules/PsGet
-
-config/.history
-Thumbs.db
-*.exe
-*.dll
-build/
-Version v*
 *.bak
-config/user-*
-config/aliases
-config/profile.d
-.github_changelog_generator
+*.exe
+config/kitty/Jumplist
+config/kitty/Sessions
+config/kitty/SshHostKeys
+debug_shark_installer.nsi
+Thumbs.db
+_right click/
