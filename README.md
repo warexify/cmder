@@ -82,6 +82,7 @@ The releases are the compiled version of Shark.
     Config file + theme
   
   - Finish uninstaller script
+  - Check font scripts
   - Keep installer in the install bin folder to reuse it for updating
   - Create a utility to register / unregister right clicks
   - Create script that will load all binaries in the PATH
