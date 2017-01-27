@@ -45,7 +45,7 @@ Section "-Free Programming Fonts" section_free-programming-fonts
   nsExec::ExecToStack "Powershell \
               -InputFormat None \
               -ExecutionPolicy RemoteSigned \
-              -File $\"$DIR_modules\Add-Font-Recursive.ps1$\" \
+              -File $\"$DIR_bin\Add-Font.ps1$\" \
               -FontPath $\"$DIR_modules\$NAME$\" \
            "
   
