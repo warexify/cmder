@@ -1,5 +1,10 @@
 @echo off
 
+FOR %%A IN ("%~dp0\.") DO SET "CMDER_ROOT=%%~fA"
+
+:: Remove Trailing '\'
+@if "%CMDER_ROOT:~-1%" == "\" SET CMDER_ROOT=%CMDER_ROOT:~0,-1%
+
 :: Init Script for cmd.exe
 :: Created as part of cmder project
 
