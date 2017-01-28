@@ -1,9 +1,11 @@
+!config/default
 *.bak
 build/build.exe
-config/kitty/Jumplist
-config/kitty/Sessions
-config/kitty/SshHostKeys
+config/
 debug_shark_installer.nsi
+modules/clink
+modules/clink-completions
+modules/conemu-maximus5
 shark.exe
 Thumbs.db
 _right click/
