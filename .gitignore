@@ -1,11 +1,11 @@
 !config/default
 *.bak
 build/build.exe
+build/debug_installer.nsi
+build/shark.exe
 config/
-debug_shark_installer.nsi
 modules/clink
 modules/clink-completions
 modules/conemu-maximus5
-shark.exe
 Thumbs.db
 _right click/

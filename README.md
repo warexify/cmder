@@ -111,6 +111,6 @@ The releases are the compiled version of Shark.
 MIT
 
 [//]: <@author      Kenrick JORUS>  
-[//]: <@copyright   2016 Kenrick JORUS>  
+[//]: <@copyright   2017 Kenrick JORUS>  
 [//]: <@license     MIT License>  
 [//]: <@link        http://kenijo.github.io/shark/>  

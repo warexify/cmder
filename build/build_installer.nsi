@@ -13,7 +13,7 @@ It has a modular architecture that allows anyone to add and improve the installe
 @license      MIT License
 @link         http://kenijo.github.io/shark/
 
-@package      build_shark_installer
+@package      build_installer
 @description  This script generates a full NSIS script combining all the modules then builds it.
 --------------------------------------------------------------------------------------------------*/
 
@@ -21,19 +21,17 @@ It has a modular architecture that allows anyone to add and improve the installe
 ## Define Constants
 ##--------------------------------------------------------------------------------------------------
 ## Debug mode keeps intermediate build files
-!define DEBUG             false
+!define DEBUG             true
 ## Compile and test only the defined module
 !define MODULE            ""
-## Build folder
-!define BUILD_FOLDER      ".\build"
 ## Module folder
-!define MODULE_FOLDER     "${BUILD_FOLDER}\modules"
+!define MODULE_FOLDER     "..\modules"
 ## Full NSIS script name
-!define NSI               "debug_shark_installer.nsi"
+!define NSI               "debug_installer.nsi"
 ##--------------------------------------------------------------------------------------------------
 ## Define Output
 ##--------------------------------------------------------------------------------------------------
-!define EXE "${BUILD_FOLDER}\build.exe"
+!define EXE "build.exe"
 OutFile ${EXE}
 ##--------------------------------------------------------------------------------------------------
 
@@ -42,7 +40,7 @@ Section ""
   !execute "CMD /C DEL /F /Q ${NSI}"
   
   ## Merge header.nsh
-  !execute "CMD /C TYPE ${BUILD_FOLDER}\header.nsh >> ${NSI}"
+  !execute "CMD /C TYPE header.nsh >> ${NSI}"
   !execute "CMD /C ECHO. >> ${NSI}"
 
   !if "${MODULE}" == ""
@@ -67,7 +65,7 @@ Section ""
   !execute "CMD /C ECHO. >> ${NSI}"
 
   ## Merge footer.nsh
-  !execute "CMD /C TYPE ${BUILD_FOLDER}\footer.nsh >> ${NSI}"
+  !execute "CMD /C TYPE footer.nsh >> ${NSI}"
   !execute "CMD /C ECHO. >> ${NSI}"
   
   ## Build the final installer based on the generated NSIS script  

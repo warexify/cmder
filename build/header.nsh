@@ -27,7 +27,7 @@ unicode                                       true
 ## Installer name
 !define PRODUCT_NAME                          "shark"
 ## Installer version
-!define PRODUCT_VERSION                       "1.0"
+#!define PRODUCT_VERSION                       "1.0"
 ## Registry keys
 !define ROOT_KEY                              "HKLM"
 !define UNINST_KEY                            "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -36,10 +36,8 @@ unicode                                       true
 !define MUI_STARTMENUPAGE_REGISTRY_KEY        "Software\${PRODUCT_NAME}"
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT       "${ROOT_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME  "${PRODUCT_NAME}"
-!define MUI_UI                                "${BUILD_FOLDER}\nsis_contrib\shark_ui.exe"
+!define MUI_UI                                "nsis_contrib\shark_ui.exe"
 !define MUI_UNICON                            "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall-full.ico"
-## Build folder
-!define BUILD_FOLDER                          "build"
 ##--------------------------------------------------------------------------------------------------
 ## Define Output
 ##--------------------------------------------------------------------------------------------------
@@ -55,9 +53,9 @@ ShowUnInstDetails                             show
 ##--------------------------------------------------------------------------------------------------
 ## Include Custom NSIS includes and plugins
 ##--------------------------------------------------------------------------------------------------
-!addincludedir                                "${BUILD_FOLDER}\nsis_include"
-!addplugindir                                 "${BUILD_FOLDER}\nsis_plugin\x64-unicode"
-!addplugindir                                 "${BUILD_FOLDER}\nsis_plugin\x86-unicode"
+!addincludedir                                "nsis_include"
+!addplugindir                                 "nsis_plugin\x64-unicode"
+!addplugindir                                 "nsis_plugin\x86-unicode"
 ##--------------------------------------------------------------------------------------------------
 ## Include NSIS Libraries
 ##--------------------------------------------------------------------------------------------------
