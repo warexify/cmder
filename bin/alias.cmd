@@ -1,8 +1,31 @@
+::----------------------------------------------------------------------------------------------------
+:: shark
+:: The shell environment of your dreams  
+::
+:: Shark is a package installer that will allow you to create a fully customized shell environment
+:: through a single simple installer. It takes the hard work out of downloading and configuring all
+:: the components you need. Shark simplifies the installation by asking simple questions and taking
+:: care of downloading and installing everything FOR you from trusted sources (official repositories).  
+:: It has a modular architecture that allows anyone to add and improve the installer easilly.
+::
+:: @author       Kenrick JORUS
+:: @copyright    2016 Kenrick JORUS
+:: @license      MIT License
+:: @link         http://kenijo.github.io/shark/
+::
+:: @package      alias
+:: @description  Manage creation / deletion of aliases
+::               This file is a modification of Cmder ./bin/alias.bat
+:: ----------------------------------------------------------------------------------------------------
+:: Turn off output
 @echo off
 
+:: Set directories
+set shark_config=%shark_root%/config
+set shark_profile=%shark_config%/%username%
 
 if "%aliases%" == "" (
-  set ALIASES=%CMDER_ROOT%\config\user-aliases.cmd
+  set aliases=%shark_profile%/aliases.cmd
 )
 
 setlocal enabledelayedexpansion
@@ -50,7 +73,7 @@ goto parseargument
   )
 rem #endregion parseargument
 
-if "%aliases%" neq "%CMDER_ROOT%\config\user-aliases.cmd" (
+if "%aliases%" neq "%shark_root%\config\aliases.cmd" (
   set _x=!_x:/f %aliases% =!
 
   if not exist "%aliases%" (
@@ -85,22 +108,22 @@ if not ["%_temp%"] == ["%alias_name%"] (
 )
 
 :: replace already defined alias
-findstr /b /v /i "%alias_name%=" "%ALIASES%" >> "%ALIASES%.tmp"
-echo %alias_name%=%alias_value% >> "%ALIASES%.tmp" && type "%ALIASES%.tmp" > "%ALIASES%" & @del /f /q "%ALIASES%.tmp"
-doskey /macrofile="%ALIASES%"
+findstr /b /v /i "%alias_name%=" "%aliases%" >> "%aliases%.tmp"
+echo %alias_name%=%alias_value% >> "%aliases%.tmp" && type "%aliases%.tmp" > "%aliases%" & @del /f /q "%aliases%.tmp"
+doskey /macrofile="%aliases%"
 endlocal
 exit /b
 
 :p_del
 set del_alias=%~1
-findstr /b /v /i "%del_alias%=" "%ALIASES%" >> "%ALIASES%.tmp"
-type "%ALIASES%".tmp > "%ALIASES%" & @del /f /q "%ALIASES%.tmp"
+findstr /b /v /i "%del_alias%=" "%aliases%" >> "%aliases%.tmp"
+type "%aliases%".tmp > "%aliases%" & @del /f /q "%aliases%.tmp"
 doskey %del_alias%=
-doskey /macrofile=%ALIASES%
+doskey /macrofile=%aliases%
 goto:eof
 
 :p_reload
-doskey /macrofile="%ALIASES%"
+doskey /macrofile="%aliases%"
 echo Aliases reloaded
 exit /b
 
@@ -117,9 +140,9 @@ echo.Options:
 echo. 
 echo.     /d [alias]     Delete an [alias].
 echo.     /f [macrofile] Path to the [macrofile] you want to store the new alias in.
-echo.                    Default: %cmder_root%\config\user-aliases.cmd
+echo.                    Default: %shark_profile%\aliases.cmd
 echo.     /reload        Reload the aliases file.  Can be used with /f argument.
-echo.                    Default: %cmder_root%\config\user-aliases.cmd
+echo.                    Default: %shark_profile%\aliases.cmd
 echo.
 echo.	If alias is called with no parameters, it will display the list of existing aliases.
 echo.

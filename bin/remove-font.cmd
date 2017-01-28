@@ -19,16 +19,16 @@
 ::               remove-font -path "C:\folder\with\fonts\to\uninstall"
 :: ----------------------------------------------------------------------------------------------------
 @echo off
-SETLOCAL ENABLEEXTENSIONS
+setlocal enableextensions
 
-if /I ["%1"]   == ["/p"]       goto:path
-if /I ["%1"]   == ["/path"]    goto:path
-if /I ["%1"]   == ["-p"]       goto:path
-if /I ["%1"]   == ["-path"]    goto:path
-if /I ["%1"]   == ["--p"]      goto:path
-if /I ["%1"]   == ["--path"]   goto:path
-if /I ["%~2"]  == [""]         goto:help
-if /I ["%*"]   == [""]         goto:help
+if /i ["%1"]   == ["/p"]       goto:path
+if /i ["%1"]   == ["/path"]    goto:path
+if /i ["%1"]   == ["-p"]       goto:path
+if /i ["%1"]   == ["-path"]    goto:path
+if /i ["%1"]   == ["--p"]      goto:path
+if /i ["%1"]   == ["--path"]   goto:path
+if /i ["%~2"]  == [""]         goto:help
+if /i ["%*"]   == [""]         goto:help
 
 :help
 echo.The syntax of the command is incorrect.
@@ -45,4 +45,4 @@ goto:eof
 Powershell -InputFormat None -ExecutionPolicy RemoteSigned -Command "ForEach ($font in (dir '%~2' -Include *.fon, *.fnt, *.ttf, *.ttc, *.otf, *.mmm, *.pbf, *.pfm -Recurse)) {  & '.\Uninstall-Font.ps1' -File $font.Name; }"
 goto:eof
 
-ENDLOCAL
+endlocal
