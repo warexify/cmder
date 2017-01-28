@@ -1,11 +1,12 @@
 # shark
 This project started as a fork of [Cmder](http://cmder.net) and became its own full fledge version allowing users to select which components they want to include in their installation.
 It still uses the structure design of [Cmder](http://cmder.net) to keep the benefits of the updated its scripts.
- - .\bin\alias.bat as been moved to \bin.alias.cmd and reworked
- - .\config\user-aliases.cmd as been moved to .\config\default\aliases.cmd and reworked
- - .\config\user-profile.cmd as been moved to .\config\default\clink\profile.cmd and reworked
- - .\vendor\clink.lua as been moved to .\config\default\clink\clink.lua and reworked
- - .\vendor\init.bat as been moved to \init.cmd and reworked
+The following scripts have been moved and reworked:
+ - .\bin\alias.bat => .\bin\alias.cmd
+ - .\config\user-aliases.cmd => .\config\default\aliases.cmd
+ - .\config\user-profile.cmd => .\config\default\clink\profile.cmd
+ - .\vendor\clink.lua => .\config\clink.lua
+ - .\vendor\init.bat => .\init.cmd
 
 ##### Create the shell environment of your dreams  
 Shark is a packaged installer that will allow you to create a fully customized shell environment through a single simple installer.  
