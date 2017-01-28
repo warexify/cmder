@@ -8,7 +8,7 @@ The following scripts have been moved and reworked:
  - .\vendor\clink.lua => .\config\clink.lua
  - .\vendor\init.bat => .\init.cmd
 
-##### Create the shell environment of your dreams  
+## Create the shell environment of your dreams  
 Shark is a packaged installer that will allow you to create a fully customized shell environment through a single simple installer.  
 It takes the hard work out of downloading and configuring all the components you need.  
 Shark simplifies the installation by asking simple questions and taking care of downloading and installing everything for you from trusted sources (official repositories).  
