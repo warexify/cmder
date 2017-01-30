@@ -1,7 +1,7 @@
 !config/default
 *.bak
-build/build.exe
-build/debug_installer.nsi
+build/make.exe
+build/debug.nsi
 build/shark.exe
 config/
 modules/clink
