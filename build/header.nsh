@@ -32,7 +32,7 @@ unicode                                       true
 !define ROOT_KEY                              "HKLM"
 !define UNINST_KEY                            "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 ## MUI Settings
-!define MUI_ICON                              "icons\terminal_white.ico"
+!define MUI_ICON                              "..\icons\terminal_white.ico"
 !define MUI_STARTMENUPAGE_REGISTRY_KEY        "Software\${PRODUCT_NAME}"
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT       "${ROOT_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME  "${PRODUCT_NAME}"
@@ -85,7 +85,7 @@ Var Github_User
 ##--------------------------------------------------------------------------------------------------
 ## Define MUI Pages
 ##--------------------------------------------------------------------------------------------------
-!insertmacro MUI_PAGE_LICENSE                 "Readme.md"
+!insertmacro MUI_PAGE_LICENSE                 "..\Readme.md"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_INSTFILES
@@ -108,7 +108,7 @@ Section "-pre_section"
   StrCpy $DIR_config      "$INSTDIR\config"
   StrCpy $DIR_icons       "$INSTDIR\icons"
   StrCpy $DIR_installer   "$INSTDIR\installer"
-  StrCpy $DIR_modules     "$INSTDIR\vendor"
+  StrCpy $DIR_modules     "$INSTDIR\modules"
 
   StrCpy $GitHub_URL      "https://github.com"
   StrCpy $GitHub_Releases "releases"
@@ -116,16 +116,16 @@ Section "-pre_section"
   SetOverwrite  ifnewer
   
   SetOutPath    "$DIR_bin"
-  File /r "bin\*"
+  File /r "..\bin\*"
   
   SetOutPath    "$DIR_icons"
-  File /r "icons\*"
+  File /r "..\icons\*"
   
   SetOutPath    "$DIR_installer"
-  File /r "installer\*"
+  File /r "..\installer\*"
   
   SetOutPath    "$DIR_modules"
-  File /r "vendor\*"
+  File /r "..\modules\*"
   
   ## Create start menu shortcut folder
   SetShellVarContext all

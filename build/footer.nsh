@@ -22,7 +22,7 @@ It has a modular architecture that allows anyone to add and improve the installe
 Section "-post_section"
   SetOverwrite  off
   SetOutPath    "$DIR_config"
-  File /r "config\*"
+  File /r "..\config\*"
   
   ## Create an uninstaller and a shortcut to it.
   SetShellVarContext all
