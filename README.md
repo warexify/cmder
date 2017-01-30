@@ -103,14 +103,14 @@ The releases are the compiled version of Shark.
  1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0  
     All NSIS dependancies used are included in the `nsis_contrib`, `nsis_include` and `nsis_plugin` folders
  2. Edit modules or create new ones in the `build\modules` folder. Modules have an `*.nsh` extension
- 4. Compile the `build.nsi` script and you'll get a `shark.exe` installer
+ 4. Compile the `.\build\make.nsi` script and you'll get a `.build\shark.exe` installer
  
 ---
 
 ## License
 MIT
 
-[//]: <@author      Kenrick JORUS>  
-[//]: <@copyright   2017 Kenrick JORUS>  
-[//]: <@license     MIT License>  
-[//]: <@link        http://kenijo.github.io/shark/>  
+[//]: < @author      Kenrick JORUS >  
+[//]: < @copyright   2017 Kenrick JORUS >  
+[//]: < @license     MIT License >  
+[//]: < @link        http://kenijo.github.io/shark/ >  
