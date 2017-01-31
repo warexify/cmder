@@ -49,9 +49,19 @@ Section "ConEmu" section_conemu
 
   ## Create shortcuts
   ${If} ${RunningX64}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT.lnk" "$DIR_modules\$NAME\ConEmu64.exe"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD (Admin)}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD x32/x64}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PowerShell}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PowerShell (Admin)}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PuTTY}$\""
   ${Else}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT.lnk" "$DIR_modules\$NAME\ConEmu.exe"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD (Admin)}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD x32/x64}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PowerShell}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PowerShell (Admin)}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PuTTY}$\""
   ${EndIf}
     
   ## Cleanup installation files
