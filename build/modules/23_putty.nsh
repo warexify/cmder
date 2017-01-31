@@ -61,13 +61,13 @@ Section /o "PuTTY" section_putty
   ExecWait "$DIR_modules\putty\putty.exe -convert-dir"
 
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PuTTY.lnk"                "$DIR_modules\putty\putty.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PuTTY Launcher.lnk"                "$DIR_modules\putty\putty.exe -launcher"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PSCP.lnk"                 "$DIR_modules\putty\pscp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PSFTP.lnk"                "$DIR_modules\putty\psftp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\Plink.lnk"                "$DIR_modules\putty\plink.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\Pageant.lnk"              "$DIR_modules\putty\pageant.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PuTTY Key Generator.lnk"  "$DIR_modules\putty\puttygen.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY.lnk"                "$DIR_modules\putty\putty.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY Launcher.lnk"       "$DIR_modules\putty\putty.exe -launcher"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSCP.lnk"                 "$DIR_modules\putty\pscp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSFTP.lnk"                "$DIR_modules\putty\psftp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Plink.lnk"                "$DIR_modules\putty\plink.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Pageant.lnk"              "$DIR_modules\putty\pageant.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY Key Generator.lnk"  "$DIR_modules\putty\puttygen.exe"
 
   ## Remove PuTTY provided by Gow if ${section_gow} is selected
   SectionGetFlags ${section_gow} $0 
