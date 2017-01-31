@@ -34,30 +34,29 @@ set "PATH=%PATH%;%shark_root%;%shark_root%\bin"
 
 :: Set directories
 set shark_config=%shark_root%\config
-set shark_default=%shark_config%\default
-set shark_profile=%shark_config%\%username%
+set shark_config_default=%shark_root%\config.default
 set shark_modules=%shark_root%\modules
 
 :: Create a user profile on first use
-if not exist "%shark_profile%" (
-  echo Creating a user profile in "%shark_profile%"
+if not exist "%shark_config%" (
+  echo Creating a user profile in "%shark_config%"
   echo You can customize and backup your profile there. It won't be overwritten.
   echo Creating aliases store in "aliases.cmd"
   echo Creating profile in "profile.cmd", use it to run your own startup commands
-  mkdir "%shark_profile%"
-  xcopy "%shark_default%" "%shark_profile%" /e /i /q > nul
+  mkdir "%shark_config%"
+  xcopy "%shark_config_default%" "%shark_config%" /e /i /q > nul
 )
 
 :: Make sure we have a self-extracting aliases.cmd file
-if not exist "%shark_profile%\aliases.cmd" (
+if not exist "%shark_config%\aliases.cmd" (
   echo Creating aliases store in "aliases.cmd"
-  copy "%shark_default%\aliases.cmd" "%shark_profile%\aliases.cmd" > nul
+  copy "%shark_config_default%\aliases.cmd" "%shark_config%\aliases.cmd" > nul
 )
 
 :: Make sure we have a self-extracting profile.cmd file
-if not exist "%shark_profile%\profile.cmd" (
+if not exist "%shark_config%\profile.cmd" (
   echo Creating profile in "profile.cmd", use it to run your own startup commands
-  copy "%shark_default%\profile.cmd" "%shark_profile%\profile.cmd" > nul
+  copy "%shark_config_default%\profile.cmd" "%shark_config%\profile.cmd" > nul
 )
 
 :: Set Clink directory
@@ -72,13 +71,13 @@ if /i "%processor_architecture%" == "x86" (
 )
 
 :: Execute Clink
-"%shark_clink%" inject --quiet --profile "%shark_profile%\clink" --scripts "%shark_config%"
+"%shark_clink%" inject --quiet --profile "%shark_config%\clink" --scripts "%shark_config%"
 
-:: Drop *.bat and *.cmd files into "%shark_profile%" to run them at startup.
-pushd "%shark_profile%"
+:: Drop *.bat and *.cmd files into "%shark_config%" to run them at startup.
+pushd "%shark_config%"
 for /f "usebackq" %%x in ( `dir /b *.bat *.cmd 2^>nul` ) do (
-  call :verbose-output Calling "%shark_profile%\%%x"...
-  call "%shark_profile%\%%x"
+  call :verbose-output Calling "%shark_config%\%%x"...
+  call "%shark_config%\%%x"
 )
 popd
 
@@ -87,7 +86,7 @@ popd
 if not defined HOME set "HOME=%userprofile%"
 
 :: Add aliases to the environment
-call "%shark_profile%\aliases.cmd"
+call "%shark_config%\aliases.cmd"
 
 :: This is a environment variable set by the user through a command line argument
 :: or a right click "Open Command Line Here"
@@ -96,7 +95,7 @@ if defined shark_start (
 )
 
 :: Execute user startup scripts
-call "%shark_profile%\profile.cmd"
+call "%shark_config%\profile.cmd"
 
 exit /b
 

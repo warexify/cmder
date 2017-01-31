@@ -31,6 +31,7 @@ The releases are the compiled version of Shark.
  - [Gow](https://github.com/bmatzelle/gow/wiki) ([repo](https://github.com/bmatzelle/gow))
  - [Free Programing Fonts](http://cdn.sixrevisions.com/0441-01_programming-fonts/demo/programming-fonts.html)
  - [KiTTY](http://kitty.9bis.net)
+ - Kou1okada APT-CYG ([repo](https://github.com/kou1okada/apt-cyg)) based on Trasncode-Open APT-CYG ([repo](https://github.com/transcode-open/apt-cyg))
  - [MSYS2](https://msys2.github.io) ([repo](https://github.com/msys2))
  - [PHP](http://php.net)
  - Powerline Fonts ([repo](https://github.com/powerline/fonts))
@@ -38,7 +39,6 @@ The releases are the compiled version of Shark.
  - [Scoop](http://scoop.sh)
 
 ## Packages to work on
- - Kou1okada APT-CYG ([repo](https://github.com/kou1okada/apt-cyg)) based on Trasncode-Open APT-CYG ([repo](https://github.com/transcode-open/apt-cyg))
  - [Oh My Zsh](http://ohmyz.sh) ([repo](https://github.com/robbyrussell/oh-my-zsh))
  - [Zsh](http://zsh.sourceforge.net) ([repo](https://sourceforge.net/p/zsh/code/ci/master/tree))
 
@@ -68,16 +68,14 @@ The releases are the compiled version of Shark.
   
   - ConEmu
     Config file + theme
-    Profile in config folder
-    Shortcut to CMD + right click           Orange
+    CMD right click                         Orange
     Shortcut to Cygwin + right click        Green
     Shortcut to Git + right click           Purple
     Shortcut to MSYS2 + right click         Grey
-    Shortcut to Powershell + right click    Blue
+    Powershell + right click    Blue
   
   - ConsoleZ
     config file + theme
-    Profile in config folder
     Shortcut to CMD + right click           Orange
     Shortcut to Cygwin + right click        Green
     Shortcut to Git + right click           Purple
