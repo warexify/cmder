@@ -1,11 +1,11 @@
-!config/default
 *.bak
-build/make.exe
 build/debug.nsi
+build/make.exe
 build/shark.exe
 config/
 modules/clink
 modules/clink-completions
+modules/conemu
 modules/conemu-maximus5
 Thumbs.db
 _right click/
