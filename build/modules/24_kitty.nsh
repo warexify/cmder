@@ -13,15 +13,14 @@ It has a modular architecture that allows anyone to add and improve the installe
 @license      MIT License
 @link         http://kenijo.github.io/shark/
 
-@package      putty/kitty
+@package      kitty
 @package_link http://kitty.9bis.net/
               http://www.9bis.net/kitty/?page=Download
 @description  KiTTY is a fork from version 0.67 of PuTTY, the best telnet / SSH client in the world.
               KiTTY has all the features from the original software, and adds many others.
-              The application is accessible as PuTTY and/or KiTTY for wider compatibility
 ----------------------------------------------------------------------------------------------------*/
-Section "PuTTY/KiTTY" section_kitty
-  SetOutPath "$DIR_modules\putty\"
+Section "KiTTY" section_kitty
+  SetOutPath "$DIR_modules\kitty\"
   SetOverwrite ifnewer
 
   ## Delete previous version
@@ -36,7 +35,6 @@ Section "PuTTY/KiTTY" section_kitty
   ## Download latest version
     ## Copy kitty_portable.exe from bin folder (until a direct link is found to download it
     CopyFiles /SILENT "$DIR_installer\kitty_portable.exe" "kitty.exe"
-    CopyFiles /SILENT "$DIR_installer\kitty_portable.exe" "putty.exe"
     #inetc::get /NOCANCEL "https://www.fosshub.com/KiTTY.html/kitty_portable.exe" "kitty.exe" /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe" "pscp.exe" /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe" "psftp.exe" /END
@@ -44,27 +42,22 @@ Section "PuTTY/KiTTY" section_kitty
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe" "pageant.exe" /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe" "puttygen.exe" /END
 
+  ## Create a symbolic link to use KiTTY when typing PuTTY
+  ${CreateSymbolicLinkFile} "$DIR_modules\kitty\putty.exe" "$DIR_modules\kitty\kitty.exe" $0
+  
   ## Create symbolic links to the config files of KiTTY
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Jumplist"     "$DIR_config\kitty\Commands"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Jumplist"     "$DIR_config\kitty\Folders"           $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Jumplist"     "$DIR_config\kitty\Jumplist"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Jumplist"     "$DIR_config\kitty\Launcher"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Sessions"     "$DIR_config\kitty\Sessions"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Sessions"     "$DIR_config\kitty\Sessions_Commands" $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\SshHostKeys"  "$DIR_config\kitty\SshHostKeys"       $0
-  ${CreateSymbolicLinkFile}   "$DIR_modules\kitty\kitty.ini"    "$DIR_config\kitty\kitty.ini"         $0  
-
-  ## Import existing settings from PuTTY that might be in the registry
-  ExecWait "$DIR_modules\kitty\kitty.exe -convert-dir"
+  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Jumplist" "$DIR_config\kitty\Jumplist" $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\Sessions" "$DIR_config\kitty\Sessions" $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\kitty\SshHostKeys" "$DIR_config\kitty\SshHostKeys" $0
+  ${CreateSymbolicLinkFile} "$DIR_modules\kitty\kitty.ini" "$DIR_config\kitty\kitty.ini" $0  
 
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PuTTY / KiTTY.lnk"        "$DIR_modules\kitty\kitty.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\KiTTY Launcher.lnk"       "$DIR_modules\kitty\kitty.exe -launcher"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PSCP.lnk"                 "$DIR_modules\kitty\pscp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PSFTP.lnk"                "$DIR_modules\kitty\psftp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\Plink.lnk"                "$DIR_modules\kitty\plink.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\Pageant.lnk"              "$DIR_modules\kitty\pageant.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Tools\PuTTY Key Generator.lnk"  "$DIR_modules\kitty\puttygen.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\KiTTY.lnk"                "$DIR_modules\kitty\kitty.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PSCP.lnk"                 "$DIR_modules\kitty\pscp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PSFTP.lnk"                "$DIR_modules\kitty\psftp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Plink.lnk"                "$DIR_modules\kitty\plink.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Pageant.lnk"              "$DIR_modules\kitty\pageant.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY Key Generator.lnk"  "$DIR_modules\kitty\puttygen.exe"
   
   ## Remove PuTTY provided by Gow if ${section_gow} is selected
   SectionGetFlags ${section_gow} $0 
@@ -83,4 +76,4 @@ Section "PuTTY/KiTTY" section_kitty
   end:
 SectionEnd
 
-LangString desc_kitty ${LANG_ENGLISH} "KiTTY is a fork from version 0.67 of PuTTY, the best telnet / SSH client in the world. The application is accessible as PuTTY and/or KiTTY for wider compatibility"
+LangString desc_kitty ${LANG_ENGLISH} "KiTTY is a fork from version 0.67 of PuTTY, the best telnet / SSH client in the world."
