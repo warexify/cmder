@@ -32,20 +32,20 @@ Section /o "PuTTY" section_putty
   Delete "puttygen.exe"
 
   ## Download latest version
-  inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe" "putty.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe" "pscp.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe" "psftp.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe" "plink.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe" "pageant.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe" "puttygen.exe" /END
+  inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe"            "putty.exe" /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe"      "pscp.exe" /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe"     "psftp.exe" /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe"     "plink.exe" /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe"   "pageant.exe" /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe"  "puttygen.exe" /END
   
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"                "$DIR_modules\putty\putty.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PSCP.lnk"                 "$DIR_modules\putty\pscp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PSFTP.lnk"                "$DIR_modules\putty\psftp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Plink.lnk"                "$DIR_modules\putty\plink.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Pageant.lnk"              "$DIR_modules\putty\pageant.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY Key Generator.lnk"  "$DIR_modules\putty\puttygen.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY.lnk"                "$DIR_modules\putty\putty.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSCP.lnk"                 "$DIR_modules\putty\pscp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSFTP.lnk"                "$DIR_modules\putty\psftp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Plink.lnk"                "$DIR_modules\putty\plink.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Pageant.lnk"              "$DIR_modules\putty\pageant.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY Key Generator.lnk"  "$DIR_modules\putty\puttygen.exe"
   
   ## Remove PuTTY provided by Gow if ${section_gow} is selected
   SectionGetFlags ${section_gow} $0 
