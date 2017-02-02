@@ -67,12 +67,11 @@ The releases are the compiled version of Shark.
     Profile in config folder
   
   - ConEmu
-    Config file + theme
     CMD right click                         Orange
     Shortcut to Cygwin + right click        Green
     Shortcut to Git + right click           Purple
     Shortcut to MSYS2 + right click         Grey
-    Powershell + right click    Blue
+    Powershell + right click                Blue
   
   - ConsoleZ
     config file + theme
