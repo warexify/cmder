@@ -21,8 +21,6 @@ It has a modular architecture that allows anyone to add and improve the installe
 ##--------------------------------------------------------------------------------------------------
 Section "-post_section"
   SetOverwrite  off
-  SetOutPath    "$DIR_config"
-  File /r "..\config\*"
   
   ## Create an uninstaller and a shortcut to it.
   SetShellVarContext all
@@ -61,7 +59,7 @@ Function .onInit
   ## StrCpy $1 ${section_cygwin} ## Cygwin is selected by default
 FunctionEnd
 
-## This cope is used to define option selection instead of checkboxes
+## This scope is used to define option selection instead of checkboxes
 ##Function .onSelChange
 ##    !insertmacro StartRadioButtons $1
 ##    !insertmacro RadioButton ${section_cygwin}

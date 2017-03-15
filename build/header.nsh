@@ -32,7 +32,7 @@ unicode                                       true
 !define ROOT_KEY                              "HKLM"
 !define UNINST_KEY                            "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 ## MUI Settings
-!define MUI_ICON                              "..\icons\terminal_white.ico"
+!define MUI_ICON                              "..\icons\shark.ico"
 !define MUI_STARTMENUPAGE_REGISTRY_KEY        "Software\${PRODUCT_NAME}"
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT       "${ROOT_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME  "${PRODUCT_NAME}"
@@ -104,20 +104,23 @@ Section "-pre_section"
   Var /GLOBAL DIR_installer
   Var /GLOBAL DIR_modules
 
-  StrCpy $DIR_bin         "$INSTDIR\bin"
-  StrCpy $DIR_config      "$INSTDIR\config"
-  StrCpy $DIR_icons       "$INSTDIR\icons"
-  StrCpy $DIR_installer   "$INSTDIR\installer"
-  StrCpy $DIR_modules     "$INSTDIR\modules"
+  StrCpy $DIR_bin             "$INSTDIR\bin"
+  StrCpy $DIR_config          "$INSTDIR\config"
+  StrCpy $DIR_icons           "$INSTDIR\icons"
+  StrCpy $DIR_installer       "$INSTDIR\installer"
+  StrCpy $DIR_modules         "$INSTDIR\modules"
 
-  StrCpy $GitHub_URL      "https://github.com"
-  StrCpy $GitHub_Releases "releases"
+  StrCpy $GitHub_URL          "https://github.com"
+  StrCpy $GitHub_Releases     "releases"
  
   SetOverwrite  ifnewer
   
   SetOutPath    "$DIR_bin"
   File /r "..\bin\*"
   
+  SetOutPath    "$DIR_config"
+  File /r "..\config.default\*"
+
   SetOutPath    "$DIR_icons"
   File /r "..\icons\*"
   
