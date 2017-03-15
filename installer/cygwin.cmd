@@ -28,7 +28,7 @@ SET architecture=%2
 SET categories=base
 SET installer=%1
 SET local_package_dir=%4
-SET packages=
+SET packages=%5
 SET root=%3
 ::SET site=http://mirrors.kernel.org/sourceware/cygwin/
 SET site=http://mirrors.xmission.com/cygwin/
@@ -40,7 +40,7 @@ ECHO Installing Cygwin %architecture%
 ECHO Categories: %categories%
 
 :: Get all the packages and make a well formated list
-FOR /F "delims=" %%a IN (..\config\cygwin.packages) DO (
+FOR /F "delims=" %%a IN (%local_package_dir%) DO (
   SET currentline=%%a
   IF NOT DEFINED packages (
     SET packages=!currentline!
@@ -50,7 +50,6 @@ FOR /F "delims=" %%a IN (..\config\cygwin.packages) DO (
 )
 
 ECHO Packages: %packages%
-
 ECHO Root Directory: %root%
 ECHO Local Package Directory: %local_package_dir%
 

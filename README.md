@@ -8,10 +8,10 @@ The following scripts have been moved and reworked:
  - .\vendor\clink.lua => .\config\clink.lua
  - .\vendor\init.bat => .\init.cmd
 
-## Create the shell environment of your dreams  
-Shark is a packaged installer that will allow you to create a fully customized shell environment through a single simple installer.  
-It takes the hard work out of downloading and configuring all the components you need.  
-Shark simplifies the installation by asking simple questions and taking care of downloading and installing everything for you from trusted sources (official repositories).  
+## Create the shell environment of your dreams
+Shark is a packaged installer that will allow you to create a fully customized shell environment through a single simple installer.
+It takes the hard work out of downloading and configuring all the components you need.
+Shark simplifies the installation by asking simple questions and taking care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easily.
 
 ## Repository
@@ -54,25 +54,24 @@ The releases are the compiled version of Shark.
 ## TODO
   - Cygwin
     Installer shortcut to add packages
-    Profile in config folder
-    
+
   - Git - purple
     Profile in config folder
 
   - MSYS2 - blue
     Profile in config folder
-   
+
   - CMD
     Config file + theme
     Profile in config folder
-  
+
   - ConEmu
     CMD right click                         Orange
     Shortcut to Cygwin + right click        Green
     Shortcut to Git + right click           Purple
     Shortcut to MSYS2 + right click         Grey
     Powershell + right click                Blue
-  
+
   - ConsoleZ
     config file + theme
     Shortcut to CMD + right click           Orange
@@ -83,7 +82,7 @@ The releases are the compiled version of Shark.
 
   - Powershell
     Config file + theme
-  
+
   - Finish uninstaller script
   - Check font scripts
   - Keep installer in the install bin folder to reuse it for updating
@@ -93,21 +92,22 @@ The releases are the compiled version of Shark.
 
 ## TODO
   - Check TODO in init.cmd
-  
+  - create a theme for regular cmd as reg file based on one dark
+
 ---
 
 ## How to compile your own version of Shrak
- 1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0  
+ 1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0
     All NSIS dependancies used are included in the `nsis_contrib`, `nsis_include` and `nsis_plugin` folders
  2. Edit modules or create new ones in the `build\modules` folder. Modules have an `*.nsh` extension
  4. Compile the `.\build\make.nsi` script and you'll get a `.build\shark.exe` installer
- 
+
 ---
 
 ## License
 MIT
 
-[//]: < @author      Kenrick JORUS >  
-[//]: < @copyright   2017 Kenrick JORUS >  
-[//]: < @license     MIT License >  
-[//]: < @link        http://kenijo.github.io/shark/ >  
+[//]: < @author      Kenrick JORUS >
+[//]: < @copyright   2017 Kenrick JORUS >
+[//]: < @license     MIT License >
+[//]: < @link        http://kenijo.github.io/shark/ >
