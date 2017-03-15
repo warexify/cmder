@@ -27,10 +27,7 @@ Section "Cygwin" section_cygwin
   ${Else}
     StrCpy $0 "x86"
   ${EndIf}  
-  
-  ## Install config files
-  File /r "config\cygwin.packages"
-   
+    
   SetOutPath "$DIR_installer"
   SetOverwrite ifnewer
  
@@ -48,17 +45,26 @@ Section "Cygwin" section_cygwin
   skip_download:
   
   ## Install
-  nsExec::ExecToStack 'cygwin.cmd "$INSTALLER" "$0" "$DIR_modules\$NAME" "$DIR_installer\cygwin-packages"'
+  nsExec::ExecToStack 'cygwin.cmd "$INSTALLER" "$0" "$DIR_modules\$NAME" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages"'
+ 
+  ## Create a default cygwin profile with preset settings
+  SetOutPath "$DIR_config\$NAME\home\"
+  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"    
+  CreateDirectory "$0"
+  CopyFiles "profile" "$0"
 
-  SetOutPath "$DIR_modules\$NAME"
-  File /r "config\cygwin\*"
-  System::Call "advapi32GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"
-  SetOutPath "$DIR_modules\$NAME\home\$0"
-  File /r "config\cygwin\home\profile\*"
-
+  ## Copy some default settings over to Cygwin
+  SetOverwrite on
+  CopyFiles /silent "$DIR_config\$NAME\etc\fstab" "$DIR_modules\$NAME\etc"
+  SetOverwrite ifnewer
+  
+  ## Create a symbolink link between the Cygwin home folder and the our home folder
+  RMDir /r "$DIR_modules\$NAME\home"
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\home" "$DIR_config\$NAME\home" $0
+  
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Terminal.lnk" "$DIR_modules\$NAME\bin\mintty.exe" "-i '$DIR_icons\bash.ico' -" "'$DIR_icons\bash.ico'"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\Cygwin-x86_64.exe" "" "$INSTDIR\$INSTALLER"
+  #CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Terminal.lnk" "$DIR_modules\$NAME\bin\mintty.exe" "-i '$DIR_icons\shark_green.ico' -" "$DIR_icons\shark_green.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\Cygwin-x86_64.exe"
 
 /*
   ## Right click for Cygwin Bash
