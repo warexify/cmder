@@ -45,23 +45,31 @@ Section "ConEmu" section_conemu
   ## Install
   nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER"'
   ${CreateSymbolicLinkFile} "$DIR_modules\$NAME\conemu.xml" "$DIR_config\conemu.xml" $0
+  ## Register ConEmu as the default console manager
   ExecWait 'ConEmu.exe /NoUpdate /LoadCfgFile "$DIR_config\conemu.xml" /Icon "$DIR_icons\shark.ico" /SetDefTerm /UpdateJumpList /Exit'
 
+  ## Copy Shark icon in CenEmu folder to use as default icon
+  SetOverwrite on
+  CopyFiles /silent "$DIR_icons\shark.ico" "$DIR_modules\$NAME\conemu.ico"
+  SetOverwrite ifnewer
+  
   ## Create shortcuts
   ${If} ${RunningX64}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD (Admin)}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{CMD x32/x64}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PowerShell}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PowerShell (Admin)}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk" "$DIR_modules\$NAME\ConEmu64.exe -run $\"{PuTTY}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk"                "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD}$\""                "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"        "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD (Admin)}$\""        "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk"   "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD x32/x64}$\""        "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk"         "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PowerShell}$\""         "$DIR_icons\shark_blue.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PowerShell (Admin)}$\"" "$DIR_icons\shark_blue.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin.lnk"             "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{Cygwin}$\""             "$DIR_icons\shark_green.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"              "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PuTTY}$\""              "$DIR_icons\shark_yellow.ico"
   ${Else}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD (Admin)}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{CMD x32/x64}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PowerShell}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PowerShell (Admin)}$\""
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk" "$DIR_modules\$NAME\ConEmu.exe -run $\"{PuTTY}$\""
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk"                "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD}$\""                "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"        "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD (Admin)}$\""        "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk"   "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD x32/x64}$\""        "$DIR_icons\shark_cyan.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk"         "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PowerShell}$\""         "$DIR_icons\shark_blue.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PowerShell (Admin)}$\"" "$DIR_icons\shark_blue.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"              "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{Cygwin}$\""             "$DIR_icons\shark_green.ico"
+    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin.lnk"             "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PuTTY}$\""              "$DIR_icons\shark_yellow.ico"
   ${EndIf}
     
   ## Cleanup installation files
