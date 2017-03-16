@@ -14,13 +14,20 @@
 :: @link         http://kenijo.github.io/shark/
 ::
 :: @package      remove-font
-:: @description  Script that uninstalls fonts recursively
-:: @usage        remove-font -path "font_to_unintall.ttf"
-::               remove-font -path "C:\folder\with\fonts\to\uninstall"
+:: @description  This script is used to uninstall a Windows font.
+:: @usage        remove-font.cmd -file "MyFont.ttf"
+::               remove-font.cmd -path "C:\Custom Fonts\MyFont.ttf"
+::               remove-font.cmd -path "C:\Custom Fonts"
 :: ----------------------------------------------------------------------------------------------------
 @echo off
 setlocal enableextensions
 
+if /i ["%1"]   == ["/f"]       goto:file
+if /i ["%1"]   == ["/file"]    goto:file
+if /i ["%1"]   == ["-f"]       goto:file
+if /i ["%1"]   == ["-file"]    goto:file
+if /i ["%1"]   == ["--f"]      goto:file
+if /i ["%1"]   == ["--file"]   goto:file
 if /i ["%1"]   == ["/p"]       goto:path
 if /i ["%1"]   == ["/path"]    goto:path
 if /i ["%1"]   == ["-p"]       goto:path
@@ -31,18 +38,34 @@ if /i ["%~2"]  == [""]         goto:help
 if /i ["%*"]   == [""]         goto:help
 
 :help
-echo.The syntax of the command is incorrect.
+echo.remove-font.cmd
+echo.  This script is used to uninstall a Windows font.
 echo.
-echo.This script is used to uninstall Windows fonts.
-echo. remove-font -path "<Font folder path>"
-echo.             /p, -p, -path, --p, --path
-echo.                 May be either the path to a font file or to a folder
-echo.                 containing font files to install. Valid file types are
-echo.                 .fon, .fnt, .ttf, .ttc, .otf, .mmm, .pbf, and .pfm
+echo.Usage:
+echo.  remove-font.cmd -file "<Font file>" ^| -path "<Font file path or folder path>"
+echo.
+echo.Parameters:
+echo.  -help
+echo.   Displays usage information.
+echo.  -file
+echo.   A font file to remove from \Windows\Fonts.
+echo.   Valid file types are .fon, .fnt, .ttf, .ttc, .otf,
+echo.   .mmm, .pbf, and .pfm
+echo.  -path
+echo.   May be either the path to a font file or the path to a
+echo.   reference folder containing font files to remove from
+echo.   \Windows\Fonts.  Valid file types are .fon, .fnt, .ttf,
+echo.   .ttc, .otf, .mmm, .pbf, and .pfm
+echo.
+echo.Examples:
+echo.  remove-font.cmd
+echo.  remove-font.cmd -file "MyFont.ttf"
+echo.  remove-font.cmd -path "C:\Custom Fonts\MyFont.ttf"
+echo.  remove-font.cmd -path "C:\Custom Fonts"
 goto:eof
 
 :path
-Powershell -InputFormat None -ExecutionPolicy RemoteSigned -Command "ForEach ($font in (dir '%~2' -Include *.fon, *.fnt, *.ttf, *.ttc, *.otf, *.mmm, *.pbf, *.pfm -Recurse)) {  & '.\Uninstall-Font.ps1' -File $font.Name; }"
+Powershell -ExecutionPolicy Bypass -InputFormat None -Command "Invoke-Expression '.\Remove-Font.ps1 -Path ''%~2'''"
 goto:eof
 
 endlocal

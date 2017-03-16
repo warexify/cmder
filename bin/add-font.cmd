@@ -14,9 +14,9 @@
 :: @link         http://kenijo.github.io/shark/
 ::
 :: @package      add-font
-:: @description  Script that installs fonts recursively
-:: @usage        add-font -path "font_to_intall.ttf"
-::               add-font -path "C:\folder\with\fonts\to\install"
+:: @description  This script is used to install Windows fonts
+:: @usage        add-font.cmd -path "C:\Custom Fonts\MyFont.ttf"
+::               add-font.cmd -path "C:\Custom Fonts"
 :: ----------------------------------------------------------------------------------------------------
 @echo off
 setlocal enableextensions
@@ -31,18 +31,26 @@ if /i ["%~2"]  == [""]        goto:help
 if /i ["%*"]   == [""]        goto:p
 
 :help
-echo.The syntax of the command is incorrect.
+echo.add-font.cmd
+echo.  This script is used to install Windows fonts.
 echo.
-echo.This script is used to install Windows fonts.
-echo. add-font -path "<Font folder path>"
-echo.          /p, -p, -path, --p, --path
-echo.                 May be either the path to a font file or to a folder
-echo.                 containing font files to install. Valid file types are
-echo.                 .fon, .fnt, .ttf, .ttc, .otf, .mmm, .pbf, and .pfm
+echo.Usage:
+echo.  add-font.cmd -path "<Font file or folder path>"
+echo.
+echo.Parameters:
+echo.  -path
+echo.   May be either the path to a font file or the path to a folder
+echo.   containing font files to install. Valid file types are .fon,
+echo.   .fnt, .ttf, .ttc, .otf, .mmm, .pbf, and .pfm
+echo.
+echo.Examples:
+echo.  add-font.cmd
+echo.  add-font.cmd -path "C:\Custom Fonts\MyFont.ttf"
+echo.  add-font.cmd -path "C:\Custom Fonts"
 goto:eof
 
 :path
-Powershell -InputFormat None -ExecutionPolicy RemoteSigned -Command "ForEach ($font in (dir '%~2' -Include *.fon, *.fnt, *.ttf, *.ttc, *.otf, *.mmm, *.pbf, *.pfm -Recurse)) { & '.\Install-Font.ps1' -Path $font.FullName }"
+Powershell -ExecutionPolicy Bypass -InputFormat None -Command "Invoke-Expression '.\Add-Font.ps1 -Path ''%~2'''"
 goto:eof
 
 endlocal
