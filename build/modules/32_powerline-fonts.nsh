@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -27,26 +27,25 @@ Section "-Powerline Fonts" section_powerline-fonts
   StrCpy $GitHub_Repository "fonts"
   StrCpy $INSTALLER "powerline-fonts.zip"
   StrCpy $NAME "powerline-fonts"
-  
+
   ## Delete previous fonts
   RMDir /r "$DIR_modules\$NAME"
 
-  ## Check if installer has already been downloaded 
+  ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
     inetc::get /NOCANCEL "$GitHub_URL/$GitHub_User/$GitHub_Repository/archive/master.zip" "$INSTALLER" /END
  skip_download:
- 
+
   ## Install
   nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
   Rename "$DIR_modules\$GitHub_Repository-master" "$DIR_modules\$NAME"
-           
+
   ## Execute the font installation script
   nsExec::ExecToStack "Powershell \
+              -ExecutionPolicy Bypass \
               -InputFormat None \
-              -ExecutionPolicy RemoteSigned \
-              -File $\"$DIR_bin\Add-Font.ps1$\" \
-              -FontPath $\"$DIR_modules\$NAME$\" \
+              -File $\"$DIR_bin\Add-Font.ps1$\" -Path $\"$DIR_modules\$NAME$\" \
            "
 
   ## Cleanup installation files
