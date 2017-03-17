@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -24,7 +24,10 @@ It has a modular architecture that allows anyone to add and improve the installe
               KiTTY has all the features from the original PuTTY, and adds many others.
 ----------------------------------------------------------------------------------------------------*/
 Section /o "PuTTY" section_putty
-  SetOutPath "$DIR_modules\putty\"
+  StrCpy $NAME "putty"
+  StrCpy $SHORTCUT "PuTTY"
+
+  SetOutPath "$DIR_modules\$NAME\"
   SetOverwrite ifnewer
 
   ## Delete previous version
@@ -46,32 +49,32 @@ Section /o "PuTTY" section_putty
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe"     "plink.exe" /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe"   "pageant.exe" /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe"  "puttygen.exe" /END
-  
-  ## Create symbolic links to the config files of KiTTY           
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Commands"           "$DIR_config\putty\Commands"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Folders"            "$DIR_config\putty\Folders"           $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Jumplist"           "$DIR_config\putty\Jumplist"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Launcher"           "$DIR_config\putty\Launcher"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Sessions"           "$DIR_config\putty\Sessions"          $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\Sessions_Commands"  "$DIR_config\putty\Sessions_Commands" $0
-  ${CreateSymbolicLinkFolder} "$DIR_modules\putty\SshHostKeys"        "$DIR_config\putty\SshHostKeys"       $0
-  ${CreateSymbolicLinkFile}   "$DIR_modules\putty\kitty.ini"          "$DIR_config\putty\kitty.ini"         $0  
-  
+
+  ## Create symbolic links to the config files of KiTTY
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Commands"           "$DIR_config\$NAME\Commands"          $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Folders"            "$DIR_config\$NAME\Folders"           $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Jumplist"           "$DIR_config\$NAME\Jumplist"          $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Launcher"           "$DIR_config\$NAME\Launcher"          $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Sessions"           "$DIR_config\$NAME\Sessions"          $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Sessions_Commands"  "$DIR_config\$NAME\Sessions_Commands" $0
+  ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\SshHostKeys"        "$DIR_config\$NAME\SshHostKeys"       $0
+  ${CreateSymbolicLinkFile}   "$DIR_modules\$NAME\kitty.ini"          "$DIR_config\$NAME\kitty.ini"         $0
+
   ## Import existing settings from PuTTY that might be in the registry
-  ExecWait "$DIR_modules\putty\putty.exe -convert-dir"
+  ExecWait "$DIR_modules\$NAME\putty.exe -convert-dir"
 
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY.lnk"                "$DIR_modules\putty\putty.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY Launcher.lnk"       "$DIR_modules\putty\putty.exe -launcher"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSCP.lnk"                 "$DIR_modules\putty\pscp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PSFTP.lnk"                "$DIR_modules\putty\psftp.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Plink.lnk"                "$DIR_modules\putty\plink.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\Pageant.lnk"              "$DIR_modules\putty\pageant.exe"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY\PuTTY Key Generator.lnk"  "$DIR_modules\putty\puttygen.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PuTTY.lnk"                "$DIR_modules\$NAME\putty.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PuTTY Launcher.lnk"       "$DIR_modules\$NAME\putty.exe -launcher"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PSCP.lnk"                 "$DIR_modules\$NAME\pscp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PSFTP.lnk"                "$DIR_modules\$NAME\psftp.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\Plink.lnk"                "$DIR_modules\$NAME\plink.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\Pageant.lnk"              "$DIR_modules\$NAME\pageant.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PuTTY Key Generator.lnk"  "$DIR_modules\$NAME\puttygen.exe"
 
   ## Remove PuTTY provided by Gow if ${section_gow} is selected
-  SectionGetFlags ${section_gow} $0 
-  IntOp $0 $0 & ${SF_SELECTED} 
+  SectionGetFlags ${section_gow} $0
+  IntOp $0 $0 & ${SF_SELECTED}
   IntCmp $0 ${SF_SELECTED} execute
     ## We keep PuTTY provided by Gow
     Goto end
