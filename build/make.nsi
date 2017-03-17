@@ -1,11 +1,11 @@
 /*--------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -21,11 +21,11 @@ It has a modular architecture that allows anyone to add and improve the installe
 ## Define Constants
 ##--------------------------------------------------------------------------------------------------
 ## Debug mode keeps intermediate build files
-!define DEBUG             true
+!define DEBUG             false
 ## Compile and test only the defined module
 !define MODULE            ""
 ## Module folder
-!define MODULE_FOLDER     "..\modules"
+!define MODULE_FOLDER     ".\modules"
 ## Full NSIS script name
 !define NSI               "debug.nsi"
 ##--------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ OutFile ${EXE}
 Section ""
   ## Delete intermediary build files if left over
   !execute "CMD /C DEL /F /Q ${NSI}"
-  
+
   ## Merge header.nsh
   !execute "CMD /C TYPE header.nsh >> ${NSI}"
   !execute "CMD /C ECHO. >> ${NSI}"
@@ -51,7 +51,7 @@ Section ""
     !execute "CMD /C TYPE ${MODULE_FOLDER}\*_${MODULE}.nsh >> ${NSI}"
     !execute "CMD /C ECHO. >> ${NSI}"
   !endif
-  
+
   !execute "CMD /C ECHO ## Section descriptions >> ${NSI}"
   !execute "CMD /C ECHO !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN >> ${NSI}"
   !if "${MODULE}" == ""
@@ -66,15 +66,15 @@ Section ""
 
   ## Merge footer.nsh
   !execute "CMD /C TYPE footer.nsh >> ${NSI}"
-  !execute "CMD /C ECHO. >> ${NSI}"
-  
-  ## Build the final installer based on the generated NSIS script  
+  !execute "CMD /C ECHO. >> ${NSI}" ${NS}
+
+  ## Build the final installer based on the generated NSIS script
   !makensis "${NSI}"
 
-  ## Delete intermediary build files if not in debug mode 
+  ## Delete intermediary build files if not in debug mode
   !if "${DEBUG}" == false
     !finalize "CMD /C DEL /F /Q ${NSI}"
   !endif
-  
+
   !finalize "CMD /C DEL /F /Q ${EXE}"
 SectionEnd
