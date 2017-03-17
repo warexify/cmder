@@ -7,5 +7,13 @@ modules/clink
 modules/clink-completions
 modules/conemu
 modules/conemu-maximus5
+modules/consolez
+modules/cygwin
+modules/free-programming-fonts
+modules/git
+modules/gow
+modules/php
+modules/powerline-fonts
+modules/putty
 Thumbs.db
 _right click/
