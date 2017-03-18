@@ -23,7 +23,7 @@ It has a modular architecture that allows anyone to add and improve the installe
               The actual PuTTY.exe is being replaced by KiTTY which is a fork from version 0.67.
               KiTTY has all the features from the original PuTTY, and adds many others.
 ----------------------------------------------------------------------------------------------------*/
-Section /o "PuTTY" section_putty
+Section "PuTTY" section_putty
   StrCpy $NAME "putty"
   StrCpy $SHORTCUT "PuTTY"
 
@@ -43,12 +43,33 @@ Section /o "PuTTY" section_putty
     ## Copy kitty_portable.exe from bin folder as putty.exe (until a direct link is found to download it)
     CopyFiles /SILENT "$DIR_installer\kitty_portable.exe" "putty.exe"
     ## Disable download from the original PuTTY
-    #inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe"         "putty.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe"      "pscp.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe"     "psftp.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe"     "plink.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe"   "pageant.exe" /END
-  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe"  "puttygen.exe" /END
+    #inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe"         "putty.exe"     /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe"      "pscp.exe"      /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe"     "psftp.exe"     /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe"     "plink.exe"     /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe"   "pageant.exe"   /END
+  inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe"  "puttygen.exe"  /END
+
+  ## Import existing settings from PuTTY that might be in the registry
+  ExecWait "$DIR_modules\$NAME\putty.exe -convert-dir"
+
+  ## Move the imported settings to the config folder
+  CopyFiles /SILENT "$DIR_modules\$NAME\Commands\*"           "$DIR_config\$NAME\Commands"
+  CopyFiles /SILENT "$DIR_modules\$NAME\Folders\*"            "$DIR_config\$NAME\Folders"
+  CopyFiles /SILENT "$DIR_modules\$NAME\Jumplist\*"           "$DIR_config\$NAME\Jumplist"
+  CopyFiles /SILENT "$DIR_modules\$NAME\Launcher\*"           "$DIR_config\$NAME\Launcher"
+  CopyFiles /SILENT "$DIR_modules\$NAME\Sessions\*"           "$DIR_config\$NAME\Sessions"
+  CopyFiles /SILENT "$DIR_modules\$NAME\Sessions_Commands\*"  "$DIR_config\$NAME\Sessions_Commands"
+  CopyFiles /SILENT "$DIR_modules\$NAME\SshHostKeys\*"        "$DIR_config\$NAME\SshHostKeys"
+
+  ## Delete imported settings once they are moved to the config folder
+  RMDir /r "$DIR_modules\$NAME\Commands"
+  RMDir /r "$DIR_modules\$NAME\Folders"
+  RMDir /r "$DIR_modules\$NAME\Jumplist"
+  RMDir /r "$DIR_modules\$NAME\Launcher"
+  RMDir /r "$DIR_modules\$NAME\Sessions"
+  RMDir /r "$DIR_modules\$NAME\Sessions_Commands"
+  RMDir /r "$DIR_modules\$NAME\SshHostKeys"
 
   ## Create symbolic links to the config files of KiTTY
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Commands"           "$DIR_config\$NAME\Commands"          $0
@@ -59,9 +80,6 @@ Section /o "PuTTY" section_putty
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\Sessions_Commands"  "$DIR_config\$NAME\Sessions_Commands" $0
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\SshHostKeys"        "$DIR_config\$NAME\SshHostKeys"       $0
   ${CreateSymbolicLinkFile}   "$DIR_modules\$NAME\kitty.ini"          "$DIR_config\$NAME\kitty.ini"         $0
-
-  ## Import existing settings from PuTTY that might be in the registry
-  ExecWait "$DIR_modules\$NAME\putty.exe -convert-dir"
 
   ## Create shortcuts
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT\PuTTY.lnk"                "$DIR_modules\$NAME\putty.exe"
