@@ -63,37 +63,32 @@ The releases are the compiled version of Shark.
   - Git                 icon magenta
   - Git (Admin)         icon magenta bold
   - PuTTY               icon yellow
-  - Anything else       icon black
+  - Anything else       icon white
 </pre>
 
 ---
 
 ## TODO
-  - Git check installer
-  - Config folder adjustment for
-  Git
-
-  - Git -> figure out wy it doesn't install, read the readme.txt and do a rebase.cmd in the installer
+  - Config folder adjustment for Git
 
   - CMD
-  Config file + theme
-  Profile in config folder
+  Config file + theme in config folder
 
   - ConEmu
-  CMD right click                         Orange
-  Shortcut to Cygwin + right click        Green
-  Shortcut to Git + right click           Purple
-  Powershell + right click                Blue
+    CMD right click                         Orange
+    Shortcut to Cygwin + right click        Green
+    Shortcut to Git + right click           Purple
+    Powershell + right click                Blue
 
   - ConsoleZ
-  config file + theme
-  Shortcut to CMD + right click           Orange
-  Shortcut to Cygwin + right click        Green
-  Shortcut to Git + right click           Purple
-  Shortcut to Powershell + right click    Blue
+    config file + theme
+    Shortcut to CMD + right click           Orange
+    Shortcut to Cygwin + right click        Green
+    Shortcut to Git + right click           Purple
+    Shortcut to Powershell + right click    Blue
 
   - Powershell
-  Config file + theme
+    Config file + theme
 
   - Finish uninstaller script
   - Create a utility to register / unregister right clicks
@@ -103,7 +98,6 @@ The releases are the compiled version of Shark.
 ## TODO
   - Check TODO in init.cmd (check shark\init.cmd vs shark\modules\init.cmd)
   - create a theme for regular cmd as reg file based on one dark
-  - add conemu.ico in conemu folder
 
 ---
 
