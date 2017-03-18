@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -32,7 +32,7 @@ Section "ConEmu" section_conemu
   ## Delete previous version
   RMDir /r "$DIR_modules\$NAME"
 
-  ## Check if installer has already been downloaded 
+  ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
     nsExec::ExecToStack '"curl.exe" -L "$GitHub_URL/$GitHub_User/$GitHub_Repository/$GitHub_Releases" -o "$NAME" -s'
@@ -41,7 +41,7 @@ Section "ConEmu" section_conemu
     Pop $1 # printed text, up to ${NSIS_MAX_STRLEN}
     inetc::get /NOCANCEL "$GitHub_URL$1" "$INSTALLER" /END
   skip_download:
-  
+
   ## Install
   nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER"'
   ${CreateSymbolicLinkFile} "$DIR_modules\$NAME\conemu.xml" "$DIR_config\conemu.xml" $0
@@ -52,26 +52,29 @@ Section "ConEmu" section_conemu
   SetOverwrite on
   CopyFiles /silent "$DIR_icons\shark.ico" "$DIR_modules\$NAME\conemu.ico"
   SetOverwrite ifnewer
-  
+
   ## Create shortcuts
   ${If} ${RunningX64}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk"                "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD}$\""                "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"        "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD (Admin)}$\""        "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk"   "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{CMD x32/x64}$\""        "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk"         "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PowerShell}$\""         "$DIR_icons\shark_blue.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PowerShell (Admin)}$\"" "$DIR_icons\shark_blue.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin.lnk"             "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{Cygwin}$\""             "$DIR_icons\shark_green.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"              "$DIR_modules\$NAME\ConEmu64.exe" "-run $\"{PuTTY}$\""              "$DIR_icons\shark_yellow.ico"
+    StrCpy $2 "ConEmu64.exe"
   ${Else}
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD.lnk"                "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD}$\""                "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"        "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD (Admin)}$\""        "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD Dual x32/x64.lnk"   "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{CMD x32/x64}$\""        "$DIR_icons\shark_cyan.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell.lnk"         "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PowerShell}$\""         "$DIR_icons\shark_blue.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk" "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PowerShell (Admin)}$\"" "$DIR_icons\shark_blue.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"              "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{Cygwin}$\""             "$DIR_icons\shark_green.ico"
-    CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin.lnk"             "$DIR_modules\$NAME\ConEmu.exe"   "-run $\"{PuTTY}$\""              "$DIR_icons\shark_yellow.ico"
+    StrCpy $2 "ConEmu.exe"
   ${EndIf}
-    
+
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"                "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{CMD (Admin)}$\""                 "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{PowerShell (Admin)}$\""          "$DIR_icons\shark_blue_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin (Admin).lnk"             "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{Cygwin (Admin)}$\""              "$DIR_icons\shark_green_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Git Bash (Admin).lnk"           "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{Git Bash (Admin)}$\""            "$DIR_icons\shark_magenta_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"                      "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{PuTTY}$\""                       "$DIR_icons\shark_yellow.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD.lnk"                   "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD}$\""                   "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\PowerShell.lnk"            "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::PowerShell}$\""            "$DIR_icons\shark_blue.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Cygwin.lnk"                "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Cygwin}$\""                "$DIR_icons\shark_green.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Git Bash.lnk"              "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Git Bash}$\""              "$DIR_icons\shark_magenta.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit.lnk"            "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit}$\""            "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit (Admin).lnk"    "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit (Admin)}$\""    "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32/64 bit.lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit}$\""         "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32/64 bit (Admin).lnk" "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit (Admin)}$\"" "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
+
   ## Cleanup installation files
   !if "${DEBUG}" == false
     Delete "$INSTALLER"
