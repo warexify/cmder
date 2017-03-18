@@ -1,11 +1,11 @@
 /*--------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -112,25 +112,26 @@ Section "-pre_section"
 
   StrCpy $GitHub_URL          "https://github.com"
   StrCpy $GitHub_Releases     "releases"
- 
+
   SetOverwrite  ifnewer
-  
+
   SetOutPath    "$DIR_bin"
   File /r "..\bin\*"
-  
+
   SetOutPath    "$DIR_config"
   File /r "..\config.default\*"
 
   SetOutPath    "$DIR_icons"
   File /r "..\icons\*"
-  
+
   SetOutPath    "$DIR_installer"
   File /r "..\installer\*"
-  
+
   SetOutPath    "$DIR_modules"
   File /r "..\modules\*"
-  
+
   ## Create start menu shortcut folder
   SetShellVarContext all
-	CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}"
+  CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}"
+  CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}\More"
 SectionEnd

@@ -33,7 +33,7 @@ Section /o "Git for Windows" section_git-for-windows
 
   ## Delete previous version
   RMDir /r "$DIR_modules\$GitHub_Repository"
-	
+
   ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
@@ -42,7 +42,6 @@ Section /o "Git for Windows" section_git-for-windows
     Pop $0 # return value/error/timeout
     Pop $1 # printed text, up to ${NSIS_MAX_STRLEN}
     ${StrRep} $2 $1 "/" "\"
-		MessageBox MB_ICONINFORMATION|MB_OK "$GitHub_URL$1"
 
     inetc::get /NOCANCEL "$GitHub_URL$1" "$INSTALLER" /END
   skip_download:
