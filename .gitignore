@@ -1,7 +1,11 @@
 *.bak
+.vscode-upload.json
 build/debug.nsi
+build/debug_cmm.nsi
 build/make.exe
+build/nsis_contrib/ResourceHacker.ini
 build/shark.exe
+build/shark_context_menu_manager.exe
 config/
 modules/clink
 modules/clink-completions
@@ -17,7 +21,3 @@ modules/powerline-fonts
 modules/putty
 Thumbs.db
 _right click/
-.vscode-upload.json
-build/nsis_contrib/ResourceHacker.ini
-build/debug_cmm.nsi
-build/shark_context_menu_manager.exe
