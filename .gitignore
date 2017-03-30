@@ -18,3 +18,6 @@ modules/putty
 Thumbs.db
 _right click/
 .vscode-upload.json
+build/nsis_contrib/ResourceHacker.ini
+build/debug_cmm.nsi
+build/shark_context_menu_manager.exe
