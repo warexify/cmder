@@ -71,8 +71,8 @@ Section "ConEmu" section_conemu
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Git Bash.lnk"              "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Git Bash}$\""              "$DIR_icons\shark_magenta.ico"
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit.lnk"            "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit}$\""            "$DIR_icons\shark_cyan.ico"
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit (Admin).lnk"    "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit (Admin)}$\""    "$DIR_icons\shark_cyan_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32/64 bit.lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit}$\""         "$DIR_icons\shark_cyan.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32/64 bit (Admin).lnk" "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit (Admin)}$\"" "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit.lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit}$\""         "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit (Admin).lnk" "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit (Admin)}$\"" "$DIR_icons\shark_cyan_bold.ico"
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
 
   ## Cleanup installation files
