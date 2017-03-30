@@ -22,9 +22,12 @@ It has a modular architecture that allows anyone to add and improve the installe
 Section "-post_section"
   SetOverwrite  off
   
-  ## Create an uninstaller and a shortcut to it.
+  ## Create a shortcut for the Context Menu Manager
   SetShellVarContext all
 	CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}"
+  CreateShortCut    "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Context Menu Manager.lnk" "$DIR_modules\shark_context_menu_manager.exe"
+	
+  ## Create an uninstaller and a shortcut to it.
   CreateShortCut    "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall ${PRODUCT_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
   ## Add to "Add/Remove Programs" or "Programs and Features"

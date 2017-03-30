@@ -26,8 +26,10 @@ It has a modular architecture that allows anyone to add and improve the installe
 !define MODULE            ""
 ## Module folder
 !define MODULE_FOLDER     ".\modules"
+!define MODULE_CMM_FOLDER ".\modules_cmm"
 ## Full NSIS script name
 !define NSI               "debug.nsi"
+!define NSI_CMM           "debug_cmm.nsi"
 ##--------------------------------------------------------------------------------------------------
 ## Define Output
 ##--------------------------------------------------------------------------------------------------
@@ -38,10 +40,33 @@ OutFile ${EXE}
 Section ""
   ## Delete intermediary build files if left over
   !execute "CMD /C DEL /F /Q ${NSI}"
+  !execute "CMD /C DEL /F /Q ${NSI_CMM}"
 
-  ## Merge header.nsh
+	##--------------------------------------------------------------------------------------------------
+	## shark context menu manager
+	##--------------------------------------------------------------------------------------------------	
+  
+	## Merge header.nsh
+  !execute "CMD /C TYPE ${MODULE_CMM_FOLDER}\header.nsh >> ${NSI_CMM}"
+  !execute "CMD /C ECHO. >> ${NSI_CMM}"         
+
+	## Loop through all the modules and concatenate them into a single NSIS script
+	!execute "CMD /C FOR %F IN (${MODULE_CMM_FOLDER}\*cmm.nsh) DO ( TYPE %~fF >> ${NSI_CMM} & ECHO. >> ${NSI_CMM} )"
+  
+	## Merge footer.nsh
+  !execute "CMD /C TYPE ${MODULE_CMM_FOLDER}\footer.nsh >> ${NSI_CMM}"
+  !execute "CMD /C ECHO. >> ${NSI_CMM}"    
+	
+	## Build the final installer based on the generated NSIS script
+  !makensis "${NSI_CMM}"
+	
+	##--------------------------------------------------------------------------------------------------
+	## shark installer
+	##--------------------------------------------------------------------------------------------------	
+  
+	## Merge header.nsh
   !execute "CMD /C TYPE header.nsh >> ${NSI}"
-  !execute "CMD /C ECHO. >> ${NSI}"
+  !execute "CMD /C ECHO. >> ${NSI}"         
 
   !if "${MODULE}" == ""
     ## Loop through all the modules and concatenate them into a single NSIS script
@@ -74,6 +99,8 @@ Section ""
   ## Delete intermediary build files if not in debug mode
   !if "${DEBUG}" == false
     !finalize "CMD /C DEL /F /Q ${NSI}"
+    !finalize "CMD /C DEL /F /Q ${NSI_CMM}"
+    !finalize "CMD /C DEL /F /Q shark_context_menu_manager.exe"
   !endif
 
   !finalize "CMD /C DEL /F /Q ${EXE}"

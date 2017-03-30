@@ -47,7 +47,6 @@ The releases are the compiled version of Shark.
   ## Inspirational links
   - [Babun](http://babun.github.io) ([repo](https://github.com/babun/babun))
   - [Cmder](http://cmder.net) ([repo](https://github.com/cmderdev/cmder))
-  - [MinTTY](http://mintty.github.io) ([repo](https://github.com/mintty/mintty))
   - [Package manager for Cygwin](http://stackoverflow.com/questions/9260014/how-do-i-install-cygwin-components-from-the-command-line/23143997#23143997)
   - Sage ([repo](https://github.com/svnpenn/sage))
 
@@ -69,35 +68,27 @@ The releases are the compiled version of Shark.
 ---
 
 ## TODO
-  - Config folder adjustment for Git
+  - Config file:
+    CMD
+    ConsoleZ
+    Git
+    PowerShell
 
-  - CMD
-  Config file + theme in config folder
+  - Theme (current one + one based on One Dark):
+    CMD (as a reg file?)
+    ConsoleZ
+    Powershell
 
-  - ConEmu
-    CMD right click                         Orange
-    Shortcut to Cygwin + right click        Green
-    Shortcut to Git + right click           Purple
-    Powershell + right click                Blue
-
-  - ConsoleZ
-    config file + theme
-    Shortcut to CMD + right click           Orange
-    Shortcut to Cygwin + right click        Green
-    Shortcut to Git + right click           Purple
-    Shortcut to Powershell + right click    Blue
-
-  - Powershell
-    Config file + theme
+  - Execute Context Menu Manager inside the installer
 
   - Finish uninstaller script
-  - Create a utility to register / unregister right clicks
+  - Remove Context Menu Manager entries during uninstall process
+
   - Create script that will load all binaries in the PATH
   - Create environment variable that wil load in the PATH
 
-## TODO
   - Check TODO in init.cmd (check shark\init.cmd vs shark\modules\init.cmd)
-  - create a theme for regular cmd as reg file based on one dark
+  - Add npm as a new module
 
 ---
 

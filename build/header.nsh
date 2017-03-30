@@ -26,8 +26,6 @@ unicode                                       true
 ##--------------------------------------------------------------------------------------------------
 ## Installer name
 !define PRODUCT_NAME                          "shark"
-## Installer version
-#!define PRODUCT_VERSION                       "1.0"
 ## Registry keys
 !define ROOT_KEY                              "HKLM"
 !define UNINST_KEY                            "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -89,9 +87,6 @@ Var Github_User
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_INSTFILES
-!if "${DEBUG}" == false
-  !insertmacro MUI_PAGE_FINISH
-!endif
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_LANGUAGE                     "English"
 ##--------------------------------------------------------------------------------------------------
@@ -129,6 +124,7 @@ Section "-pre_section"
 
   SetOutPath    "$DIR_modules"
   File /r "..\modules\*"
+	File "shark_context_menu_manager.exe"
 
   ## Create start menu shortcut folder
   SetShellVarContext all
