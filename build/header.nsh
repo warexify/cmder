@@ -121,13 +121,16 @@ Section "-pre_section"
 
   SetOutPath    "$DIR_installer"
   File /r "..\installer\*"
+  File "shark_context_menu_manager.exe"
 
   SetOutPath    "$DIR_modules"
   File /r "..\modules\*"
-	File "shark_context_menu_manager.exe"
 
   ## Create start menu shortcut folder
   SetShellVarContext all
   CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}"
   CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}\More"
+
+  ## Create a shortcut for the Context Menu Manager
+  CreateShortCut    "$SMPROGRAMS\${PRODUCT_NAME}\More\${PRODUCT_NAME} Context Menu Manager.lnk" "$DIR_installer\shark_context_menu_manager.exe"
 SectionEnd

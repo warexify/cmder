@@ -1,11 +1,11 @@
 /*--------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -21,13 +21,9 @@ It has a modular architecture that allows anyone to add and improve the installe
 ##--------------------------------------------------------------------------------------------------
 Section "-post_section"
   SetOverwrite  off
-  
-  ## Create a shortcut for the Context Menu Manager
-  SetShellVarContext all
-	CreateDirectory   "$SMPROGRAMS\${PRODUCT_NAME}"
-  CreateShortCut    "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Context Menu Manager.lnk" "$DIR_modules\shark_context_menu_manager.exe"
-	
+
   ## Create an uninstaller and a shortcut to it.
+  SetShellVarContext all
   CreateShortCut    "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall ${PRODUCT_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
   ## Add to "Add/Remove Programs" or "Programs and Features"
@@ -38,11 +34,11 @@ Section "-post_section"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "Publisher"       "Kenijo"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "UninstallString" "$INSTDIR\uninstall.exe"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "URLInfoAbout"    "http://kenijo.github.io/shark/"
-  
+
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD "${ROOT_KEY}" "${UNINST_KEY}" "EstimatedSize" "$0"
-  
+
   WriteUninstaller  "$INSTDIR\uninstall.exe"
 SectionEnd
 
@@ -53,11 +49,11 @@ Function .onInit
       ## 64 bit code
       StrCpy $INSTDIR "$ProgramFiles64\${PRODUCT_NAME}"
     ${Else}
-      ## 32 bit code  
+      ## 32 bit code
       StrCpy $INSTDIR "$ProgramFiles32\${PRODUCT_NAME}"
     ${EndIf}
   ${EndIf}
-  
+
   ## This cope is used to define option selection instead of checkboxes
   ## StrCpy $1 ${section_cygwin} ## Cygwin is selected by default
 FunctionEnd
