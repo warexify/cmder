@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2017-03-29 09:51:22" build="170326">
+		<key name=".Vanilla" modified="2017-04-04 19:49:07" build="170402">
 			<value name="ColorTable00" type="dword" data="002d2d2d"/>
 			<value name="ColorTable01" type="dword" data="00a06e41"/>
 			<value name="ColorTable02" type="dword" data="00559b64"/>
@@ -127,8 +127,8 @@
 			<value name="ConWnd Width" type="dword" data="00000078"/>
 			<value name="ConWnd Height" type="dword" data="0000001a"/>
 			<value name="Cascaded" type="hex" data="01"/>
-			<value name="ConWnd X" type="long" data="617"/>
-			<value name="ConWnd Y" type="long" data="232"/>
+			<value name="ConWnd X" type="long" data="527"/>
+			<value name="ConWnd Y" type="long" data="406"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="AutoSaveSizePos" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
@@ -483,9 +483,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-			<key name="Tasks" modified="2017-03-27 16:12:11" build="170326">
+			<key name="Tasks" modified="2017-04-03 12:03:13" build="170402">
 				<value name="Count" type="long" data="14"/>
-				<key name="Task1" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task1" modified="2017-04-03 12:03:13" build="170402">
 					<value name="Name" type="string" data="{CMD (Admin)}"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%ConEmuDir%\..\..\icons\shark_cyan_bold.ico&quot;"/>
 					<value name="Cmd1" type="string" data="* cmd.exe /k &quot;%ConEmuDir%\..\init.cmd&quot; -new_console:t:&quot;*CMD&quot;"/>
@@ -494,7 +494,7 @@
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="Flags" type="dword" data="00000003"/>
 				</key>
-				<key name="Task2" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task2" modified="2017-04-03 12:03:29" build="170402">
 					<value name="Name" type="string" data="{PowerShell (Admin)}"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%ConEmuDir%\..\..\icons\shark_blue_bold.ico&quot;"/>
 					<value name="Cmd1" type="string" data="* PowerShell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command &quot;Invoke-Expression '. ''%ConEmuDir%\..\init.ps1'''&quot; -new_console:t:&quot;*Powershell&quot;"/>
@@ -504,17 +504,17 @@
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Cmd2" type="string" data="bash --login"/>
 				</key>
-				<key name="Task3" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task3" modified="2017-04-04 19:48:11" build="170402">
 					<value name="Name" type="string" data="{Cygwin (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%ConEmuDir%\..\..\icons\shark_green_bold.ico&quot;"/>
-					<value name="Cmd1" type="string" data="* &quot;%ConEmuDir%\..\cygwin\bin\bash.exe&quot; --login -i -new_console:t:&quot;*Cygwin&quot;"/>
+					<value name="Cmd1" type="string" data="* set CHERE_INVOKING=1 &amp; &quot;%ConEmuDir%\..\cygwin\bin\bash.exe&quot; --login -i -new_console:t:&quot;*Cygwin&quot;"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V"/>
 				</key>
-				<key name="Task4" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task4" modified="2017-04-04 19:48:11" build="170402">
 					<value name="Name" type="string" data="{Git Bash (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -523,7 +523,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task5" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task5" modified="2017-04-04 19:48:11" build="170402">
 					<value name="Name" type="string" data="{PuTTY}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -533,7 +533,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE%"/>
 				</key>
-				<key name="Task6" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task6" modified="2017-04-04 19:48:11" build="170402">
 					<value name="Name" type="string" data="{More::CMD}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -543,7 +543,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE%"/>
 				</key>
-				<key name="Task7" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task7" modified="2017-04-04 19:48:11" build="170402">
 					<value name="Name" type="string" data="{More::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -552,17 +552,17 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task8" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task8" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::Cygwin}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data="/icon &quot;%ConEmuDir%\..\..\icons\shark_green.ico&quot;"/>
-					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\cygwin\bin\bash.exe&quot; --login -i -new_console:t:&quot;Cygwin&quot;"/>
+					<value name="Cmd1" type="string" data="set CHERE_INVOKING=1 &amp; &quot;%ConEmuDir%\..\cygwin\bin\bash.exe&quot; --login -i -new_console:t:&quot;Cygwin&quot;"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE% -new_console:t:&quot;CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task9" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task9" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::Git Bash}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -572,7 +572,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE% -new_console:t:&quot;*CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task10" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task10" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::CMD 32 bit}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -582,7 +582,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE% -new_console:t:&quot;CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task11" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task11" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::CMD 32 bit (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -592,7 +592,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:d:%USERPROFILE% -new_console:t:&quot;*CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task12" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task12" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::CMD 32/64 bit}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -602,7 +602,7 @@
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:t:&quot;CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task13" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task13" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::CMD 32/64 bit (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -612,7 +612,7 @@
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd2" type="string" data="&quot;%windir%\syswow64\cmd.exe&quot; /k &quot;%ConEmuDir%\..\init.cmd&quot; &amp; echo This is 32 bit cmd.exe -new_console:s50V:t:&quot;*CMD 32 bit&quot;"/>
 				</key>
-				<key name="Task14" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Task14" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="{More::Show ANSI colors}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -623,11 +623,11 @@
 					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2017-03-29 09:48:09" build="170326">
+			<key name="Apps" modified="2017-04-04 19:50:27" build="170402">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2017-03-29 09:48:09" build="170326">
-				<key name="Palette1" modified="2017-03-29 09:48:09" build="170326">
+			<key name="Colors" modified="2017-04-04 19:50:27" build="170402">
+				<key name="Palette1" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="Shark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -668,7 +668,7 @@
 					<value name="ColorTable30" type="dword" data="0000ffff"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette2" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Palette2" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="Shark Flat"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -709,7 +709,7 @@
 					<value name="ColorTable30" type="dword" data="0000ffff"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette3" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Palette3" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="Shark One Dark"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -750,7 +750,7 @@
 					<value name="ColorTable30" type="dword" data="0000ffff"/>
 					<value name="ColorTable31" type="dword" data="00ffffff"/>
 				</key>
-				<key name="Palette4" modified="2017-03-29 09:48:09" build="170326">
+				<key name="Palette4" modified="2017-04-04 19:50:27" build="170402">
 					<value name="Name" type="string" data="Shark One Light"/>
 					<value name="ExtendColors" type="hex" data="00"/>
 					<value name="ExtendColorIdx" type="hex" data="0e"/>
@@ -872,7 +872,7 @@
 			</value>
 			<value name="Update.InetTool" type="hex" data="00"/>
 			<value name="Update.InetToolCmd" type="string" data=""/>
-			<key name="HotKeys" modified="2017-03-27 16:12:11" build="170326">
+			<key name="HotKeys" modified="2017-04-03 12:03:13" build="170402">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="00000011"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>

@@ -60,20 +60,20 @@ Section "ConEmu" section_conemu
     StrCpy $2 "ConEmu.exe"
   ${EndIf}
 
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"                "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{CMD (Admin)}$\""                 "$DIR_icons\shark_cyan_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{PowerShell (Admin)}$\""          "$DIR_icons\shark_blue_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin (Admin).lnk"             "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{Cygwin (Admin)}$\""              "$DIR_icons\shark_green_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Git Bash (Admin).lnk"           "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{Git Bash (Admin)}$\""            "$DIR_icons\shark_magenta_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\CMD (Admin).lnk"                "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{CMD (Admin)}$\""                 "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PowerShell (Admin).lnk"         "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{PowerShell (Admin)}$\""          "$DIR_icons\shark_blue_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Cygwin (Admin).lnk"             "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{Cygwin (Admin)}$\""              "$DIR_icons\shark_green_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\Git Bash (Admin).lnk"           "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{Git Bash (Admin)}$\""            "$DIR_icons\shark_magenta_bold.ico"
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\PuTTY.lnk"                      "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{PuTTY}$\""                       "$DIR_icons\shark_yellow.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD.lnk"                   "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD}$\""                   "$DIR_icons\shark_cyan.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\PowerShell.lnk"            "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::PowerShell}$\""            "$DIR_icons\shark_blue.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Cygwin.lnk"                "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Cygwin}$\""                "$DIR_icons\shark_green.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Git Bash.lnk"              "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Git Bash}$\""              "$DIR_icons\shark_magenta.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit.lnk"            "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit}$\""            "$DIR_icons\shark_cyan.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit (Admin).lnk"    "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit (Admin)}$\""    "$DIR_icons\shark_cyan_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit.lnk"         "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit}$\""         "$DIR_icons\shark_cyan.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit (Admin).lnk" "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit (Admin)}$\"" "$DIR_icons\shark_cyan_bold.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD.lnk"                   "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::CMD}$\""                   "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\PowerShell.lnk"            "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::PowerShell}$\""            "$DIR_icons\shark_blue.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Cygwin.lnk"                "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::Cygwin}$\""                "$DIR_icons\shark_green.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Git Bash.lnk"              "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::Git Bash}$\""              "$DIR_icons\shark_magenta.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit.lnk"            "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit}$\""            "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32 bit (Admin).lnk"    "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::CMD 32 bit (Admin)}$\""    "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit.lnk"         "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit}$\""         "$DIR_icons\shark_cyan.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\CMD 32-64 bit (Admin).lnk" "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::CMD 32/64 bit (Admin)}$\"" "$DIR_icons\shark_cyan_bold.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
 
   ## Cleanup installation files
   !if "${DEBUG}" == false
