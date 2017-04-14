@@ -30,6 +30,7 @@ Section "ConEmu" section_conemu
   StrCpy $SHORTCUT "ConEmu"
 
   ## Delete previous version
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$NAME"
 
   ## Check if installer has already been downloaded
@@ -76,6 +77,7 @@ Section "ConEmu" section_conemu
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
 
   ## Cleanup installation files
+  Delete "$GitHub_Repository"
   !if "${DEBUG}" == false
     Delete "$INSTALLER"
     Delete "$NAME"

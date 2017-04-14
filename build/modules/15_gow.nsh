@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -30,14 +30,15 @@ Section /o "Gow" section_gow
   StrCpy $INSTALLER "gow.zip"
 
   ## Delete previous version
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$GitHub_Repository"
 
-  ## Check if installer has already been downloaded 
+  ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
     inetc::get /NOCANCEL "$Github_URL/$GitHub_User/$GitHub_Repository/archive/master.zip" "$GitHub_Repository.zip" /END
   skip_download:
-  
+
   ## Install
   nsExec::ExecToStack '7z.exe e -aoa -o"$DIR_modules\$GitHub_Repository" -y "$INSTALLER" "gow-master\bin\*"'
 

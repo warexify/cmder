@@ -32,6 +32,7 @@ Section /o "Git for Windows" section_git-for-windows
   StrCpy $INSTALLER "git.exe"
 
   ## Delete previous version
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$GitHub_Repository"
 
   ## Check if installer has already been downloaded

@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -28,11 +28,12 @@ Section /o "ConsoleZ" section_consolez
   StrCpy $INSTALLER "consolez.zip"
   StrCpy $NAME "consolez"
   StrCpy $SHORTCUT "ConsoleZ"
-  
+
   ## Delete previous version
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$NAME"
 
-  ## Check if installer has already been downloaded 
+  ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
     nsExec::ExecToStack '"curl.exe" -L "$GitHub_URL/$GitHub_User/$GitHub_Repository/$GitHub_Releases" -o "$NAME" -s'
@@ -42,11 +43,11 @@ Section /o "ConsoleZ" section_consolez
     ${StrRep} $2 $1 "/" "\"
     inetc::get /NOCANCEL "$GitHub_URL$1" "$INSTALLER" /END
   skip_download:
-    
+
   ## Install
   nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER" "*"'
   ${CreateSymbolicLinkFile} "$DIR_modules\$NAME\console.xml" "$DIR_config\console.xml" $0
-  
+
   ## Create shortcuts
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT.lnk" "$DIR_modules\$NAME\Console.exe"
 

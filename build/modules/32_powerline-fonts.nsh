@@ -29,6 +29,7 @@ Section "-Powerline Fonts" section_powerline-fonts
   StrCpy $NAME "powerline-fonts"
 
   ## Delete previous fonts
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$NAME"
 
   ## Check if installer has already been downloaded
@@ -39,7 +40,8 @@ Section "-Powerline Fonts" section_powerline-fonts
 
   ## Install
   nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
-  Rename "$DIR_modules\$GitHub_Repository-master" "$DIR_modules\$NAME"
+  Sleep 1000
+	Rename "$DIR_modules\$GitHub_Repository-master" "$DIR_modules\$NAME"
 
   ## Execute the font installation script
   nsExec::ExecToStack "Powershell \
