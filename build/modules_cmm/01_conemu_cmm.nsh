@@ -20,14 +20,14 @@ It has a modular architecture that allows anyone to add and improve the installe
 ##--------------------------------------------------------------------------------------------------
 ## Context Menu for ConEmu
 ##--------------------------------------------------------------------------------------------------
-!define conemu_cmd_admin        "'CMD (Admin) in ConEmu'"
-!define conemu_powershell_admin  "'PowerShell (Admin) in ConEmu'"
-!define conemu_cygwin_admin      "'Cygwin (Admin) in ConEmu'"
-!define conemu_git_bash_admin    "'Git Bash (Admin) in ConEmu'"
-!define conemu_cmd              "'CMD in ConEmu'"
-!define conemu_powershell        "'PowerShell in ConEmu'"
-!define conemu_cygwin            "'Cygwin in ConEmu'"
-!define conemu_git_bash          "'Git Bash in ConEmu'"
+!define conemu_cmd_admin          "'CMD (Admin) in ConEmu'"
+!define conemu_powershell_admin   "'PowerShell (Admin) in ConEmu'"
+!define conemu_cygwin_admin       "'Cygwin (Admin) in ConEmu'"
+!define conemu_git_bash_admin     "'Git Bash (Admin) in ConEmu'"
+!define conemu_cmd                "'CMD in ConEmu'"
+!define conemu_powershell         "'PowerShell in ConEmu'"
+!define conemu_cygwin             "'Cygwin in ConEmu'"
+!define conemu_git_bash           "'Git Bash in ConEmu'"
 
 Section "!-- ConEmu Context Menu --"
   SectionIn RO
@@ -53,71 +53,79 @@ Section "!-- ConEmu Context Menu --"
   ${If} ${RunningX64}
     StrCpy $CMM_EXE "$INSTDIR\modules\conemu\ConEmu64.exe"
   ${Else}
-    StrCpy $CMM_EXE "$INSTDIR\modules\conemu\ConEmu64.exe"
+    StrCpy $CMM_EXE "$INSTDIR\modules\conemu\ConEmu.exe"
   ${EndIf}
 SectionEnd
 
 Section "CMD (Admin)" shark_conemu_cmd_admin
   StrCpy $0 ${conemu_cmd_admin}
   StrCpy $1 "$INSTDIR\icons\shark_cyan_bold.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{CMD (Admin)}"'
-  StrCpy $3 "shark_conemu_cmd_admin"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{CMD (Admin)}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{CMD (Admin)}"'
+  StrCpy $4 "shark_conemu_cmd_admin"
   Call set_context_menu
 SectionEnd
 
 Section "PowerShell (Admin)" shark_conemu_powershell_admin
   StrCpy $0 ${conemu_powershell_admin}
   StrCpy $1 "$INSTDIR\icons\shark_blue_bold.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{PowerShell (Admin)}"'
-  StrCpy $3 "shark_conemu_powershell_admin"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{PowerShell (Admin)}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{PowerShell (Admin)}"'
+  StrCpy $4 "shark_conemu_powershell_admin"
   Call set_context_menu
 SectionEnd
 
 Section "Cygwin (Admin)" shark_conemu_cygwin_admin
   StrCpy $0 ${conemu_cygwin_admin}
   StrCpy $1 "$INSTDIR\icons\shark_green_bold.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{Cygwin (Admin)}"'
-  StrCpy $3 "shark_conemu_cygwin_admin"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{Cygwin (Admin)}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{Cygwin (Admin)}"'
+  StrCpy $4 "shark_conemu_cygwin_admin"
   Call set_context_menu
 SectionEnd
 
 Section "Git Bash (Admin)" shark_conemu_git_bash_admin
   StrCpy $0 ${conemu_git_bash_admin}
   StrCpy $1 "$INSTDIR\icons\shark_magenta_bold.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{Git Bash (Admin)}"'
-  StrCpy $3 "shark_conemu_git_bash_admin"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{Git Bash (Admin)}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{Git Bash (Admin)}"'
+  StrCpy $4 "shark_conemu_git_bash_admin"
   Call set_context_menu
 SectionEnd
 
 Section "CMD" shark_conemu_cmd
   StrCpy $0 ${conemu_cmd}
   StrCpy $1 "$INSTDIR\icons\shark_cyan.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::CMD}"'
-  StrCpy $3 "shark_conemu_cmd"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{More::CMD}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::CMD}"'
+  StrCpy $4 "shark_conemu_cmd"
   Call set_context_menu
 SectionEnd
 
 Section "PowerShell" shark_conemu_powershell
   StrCpy $0 ${conemu_powershell}
   StrCpy $1 "$INSTDIR\icons\shark_blue.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::PowerShell}"'
-  StrCpy $3 "shark_conemu_powershell"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{More::PowerShell}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::PowerShell}"'
+  StrCpy $4 "shark_conemu_powershell"
   Call set_context_menu
 SectionEnd
 
 Section "Cygwin" shark_conemu_cygwin
   StrCpy $0 ${conemu_cygwin}
   StrCpy $1 "$INSTDIR\icons\shark_green.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::Cygwin}"'
-  StrCpy $3 "shark_conemu_cygwin"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{More::Cygwin}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::Cygwin}"'
+  StrCpy $4 "shark_conemu_cygwin"
   Call set_context_menu
 SectionEnd
 
 Section "Git Bash" shark_conemu_git_bash
   StrCpy $0 ${conemu_git_bash}
   StrCpy $1 "$INSTDIR\icons\shark_cmagenta.ico"
-  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::Git Bash}"'
-  StrCpy $3 "shark_conemu_git_bash"
+  StrCpy $2 '"$CMM_EXE" -title "${PRODUCT_NAME}" -dir "%1" -run "{More::Git Bash}"'
+  StrCpy $3 '"$CMM_EXE" -title "${PRODUCT_NAME}" -here -run "{More::Git Bash}"'
+  StrCpy $4 "shark_conemu_git_bash"
   Call set_context_menu
 SectionEnd
 
