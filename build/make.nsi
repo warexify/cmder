@@ -42,31 +42,31 @@ Section ""
   !execute "CMD /C DEL /F /Q ${NSI}"
   !execute "CMD /C DEL /F /Q ${NSI_CMM}"
 
-	##--------------------------------------------------------------------------------------------------
-	## shark context menu manager
-	##--------------------------------------------------------------------------------------------------	
-  
-	## Merge header.nsh
-  !execute "CMD /C TYPE ${MODULE_CMM_FOLDER}\header.nsh >> ${NSI_CMM}"
-  !execute "CMD /C ECHO. >> ${NSI_CMM}"         
+  ##--------------------------------------------------------------------------------------------------
+  ## shark context menu manager
+  ##--------------------------------------------------------------------------------------------------
 
-	## Loop through all the modules and concatenate them into a single NSIS script
-	!execute "CMD /C FOR %F IN (${MODULE_CMM_FOLDER}\*cmm.nsh) DO ( TYPE %~fF >> ${NSI_CMM} & ECHO. >> ${NSI_CMM} )"
-  
-	## Merge footer.nsh
+  ## Merge header.nsh
+  !execute "CMD /C TYPE ${MODULE_CMM_FOLDER}\header.nsh >> ${NSI_CMM}"
+  !execute "CMD /C ECHO. >> ${NSI_CMM}"
+
+  ## Loop through all the modules and concatenate them into a single NSIS script
+  !execute "CMD /C FOR %F IN (${MODULE_CMM_FOLDER}\*cmm.nsh) DO ( TYPE %~fF >> ${NSI_CMM} & ECHO. >> ${NSI_CMM} )"
+
+  ## Merge footer.nsh
   !execute "CMD /C TYPE ${MODULE_CMM_FOLDER}\footer.nsh >> ${NSI_CMM}"
-  !execute "CMD /C ECHO. >> ${NSI_CMM}"    
-	
-	## Build the final installer based on the generated NSIS script
+  !execute "CMD /C ECHO. >> ${NSI_CMM}"
+
+  ## Build the final installer based on the generated NSIS script
   !makensis "${NSI_CMM}"
-	
-	##--------------------------------------------------------------------------------------------------
-	## shark installer
-	##--------------------------------------------------------------------------------------------------	
-  
-	## Merge header.nsh
+
+  ##--------------------------------------------------------------------------------------------------
+  ## shark installer
+  ##--------------------------------------------------------------------------------------------------
+
+  ## Merge header.nsh
   !execute "CMD /C TYPE header.nsh >> ${NSI}"
-  !execute "CMD /C ECHO. >> ${NSI}"         
+  !execute "CMD /C ECHO. >> ${NSI}"
 
   !if "${MODULE}" == ""
     ## Loop through all the modules and concatenate them into a single NSIS script
