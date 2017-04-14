@@ -1,11 +1,11 @@
 ::----------------------------------------------------------------------------------------------------
 :: shark
-:: The shell environment of your dreams  
+:: The shell environment of your dreams
 ::
 :: Shark is a package installer that will allow you to create a fully customized shell environment
 :: through a single simple installer. It takes the hard work out of downloading and configuring all
 :: the components you need. Shark simplifies the installation by asking simple questions and taking
-:: care of downloading and installing everything FOR you from trusted sources (official repositories).  
+:: care of downloading and installing everything FOR you from trusted sources (official repositories).
 :: It has a modular architecture that allows anyone to add and improve the installer easilly.
 ::
 :: @author       Kenrick JORUS
@@ -21,15 +21,18 @@
 
 SETLOCAL EnableDelayedExpansion
 
-cd %dp0
-
 :: Define parameters from arguments
-SET architecture=%2
+SET architecture=%1
 SET categories=base
-SET installer=%1
+SET installer=%3
 SET local_package_dir=%4
-SET packages=%5
-SET root=%3
+SET package_list=%5
+SET root=%2
+SET update=%6
+
+cd %root%
+cd ..\..\installer
+
 ::SET site=http://mirrors.kernel.org/sourceware/cygwin/
 SET site=http://mirrors.xmission.com/cygwin/
 
@@ -40,7 +43,7 @@ ECHO Installing Cygwin %architecture%
 ECHO Categories: %categories%
 
 :: Get all the packages and make a well formated list
-FOR /F "delims=" %%a IN (%local_package_dir%) DO (
+FOR /F "delims=" %%a IN (%package_list%) DO (
   SET currentline=%%a
   IF NOT DEFINED packages (
     SET packages=!currentline!
@@ -53,7 +56,12 @@ ECHO Packages: %packages%
 ECHO Root Directory: %root%
 ECHO Local Package Directory: %local_package_dir%
 
-:: Execute installer
-%installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --quiet-mode --root %root% --site %site% --upgrade-also
+IF /I "%update%"=="update" (
+  :: Execute installer for update
+  %installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --root %root% --upgrade-also
+) ELSE (
+  :: Execute installer for install
+  %installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --quiet-mode --root %root% --site %site% --upgrade-also
+)
 
 ENDLOCAL
