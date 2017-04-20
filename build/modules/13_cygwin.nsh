@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------------------------------------
 shark
-The shell environment of your dreams  
+The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
 through a single simple installer. It takes the hard work out of downloading and configuring all
 the components you need. Shark simplifies the installation by asking simple questions and taking
-care of downloading and installing everything for you from trusted sources (official repositories).  
+care of downloading and installing everything for you from trusted sources (official repositories).
 It has a modular architecture that allows anyone to add and improve the installer easilly.
 
 @author       Kenrick JORUS
@@ -18,38 +18,41 @@ It has a modular architecture that allows anyone to add and improve the installe
 @description  Cygwin is a large collection of GNU and Open Source tools which provide functionality
               similar to a Linux distribution on Windows.
 ----------------------------------------------------------------------------------------------------*/
-Section "Cygwin" section_cygwin 
+Section "Cygwin" section_cygwin
+  Var /GLOBAL arch
+
   SetOutPath "$DIR_config"
   SetOverwrite ifnewer
-  
+
   ${If} ${RunningX64}
-    StrCpy $0 "x86_64"
+    StrCpy $arch "x86_64"
   ${Else}
-    StrCpy $0 "x86"
-  ${EndIf}  
-    
+    StrCpy $arch "x86"
+  ${EndIf}
+
   SetOutPath "$DIR_installer"
   SetOverwrite ifnewer
- 
-  StrCpy $INSTALLER "cygwin-$0.exe"
+
+  StrCpy $INSTALLER "cygwin-$arch.exe"
   StrCpy $NAME "cygwin"
   StrCpy $SHORTCUT "Cygwin"
 
   ## Delete previous version
+  Delete $INSTALLER
   RMDir /r "$DIR_modules\$NAME"
-  
-  ## Check if installer has already been downloaded 
+
+  ## Check if installer has already been downloaded
   IfFileExists $INSTALLER skip_download 0
     ## Download latest version
-    inetc::get /NOCANCEL "https://cygwin.com/setup-$0.exe" "$INSTALLER" /END
+    inetc::get /NOCANCEL "https://cygwin.com/setup-$arch.exe" "$INSTALLER" /END
   skip_download:
-  
+
   ## Install
-  nsExec::ExecToStack 'cygwin.cmd "$INSTALLER" "$0" "$DIR_modules\$NAME" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages"'
- 
+  nsExec::ExecToStack 'cygwin.cmd "$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages"'
+
   ## Create a default cygwin profile with preset settings
   SetOutPath "$DIR_config\$NAME\home\"
-  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"    
+  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"
   CreateDirectory "$0"
   CopyFiles "profile" "$0"
 
@@ -57,34 +60,17 @@ Section "Cygwin" section_cygwin
   SetOverwrite on
   CopyFiles /silent "$DIR_config\$NAME\etc\fstab" "$DIR_modules\$NAME\etc"
   SetOverwrite ifnewer
-  
+
   ## Create a symbolink link between the Cygwin home folder and the our home folder
   RMDir /r "$DIR_modules\$NAME\home"
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\home" "$DIR_config\$NAME\home" $0
-  
+
   ## Create shortcuts
-  #CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Terminal.lnk" "$DIR_modules\$NAME\bin\mintty.exe" "-i '$DIR_icons\shark_green.ico' -" "$DIR_icons\shark_green.ico"
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\Cygwin-x86_64.exe"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\cygwin.cmd" '"$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages" "update"' "$DIR_modules\$NAME\Cygwin-Terminal.ico"
 
-/*
-  ## Right click for Cygwin Bash
-  WriteRegStr HKCR "*\shell\Open Cygwin Bash Here" "Icon" "$INSTDIR\icons\bash.ico"
-  WriteRegStr HKCR "*\shell\Open Cygwin Bash Here\command" "" '$DIR_modules\$GithubRepository\ConEmu.exe /cmd {cygwin bash}'
-
-  WriteRegStr HKCR "Directory\Background\shell\Open Cygwin Bash Here" "Icon" "$INSTDIR\icons\bash.ico"
-  WriteRegStr HKCR "Directory\Background\shell\Open Cygwin Bash Here\command" "" '$DIR_modules\$GithubRepository\ConEmu.exe /cmd {cygwin bash}'
-
-  WriteRegStr HKCR "Directory\shell\Open Cygwin Bash Here" "Icon" "$INSTDIR\icons\bash.ico"
-  WriteRegStr HKCR "Directory\shell\Open Cygwin Bash Here\command" "" '$DIR_modules\$GithubRepository\ConEmu.exe /cmd {cygwin bash}'
-
-  WriteRegStr HKCR "Drive\shell\Open Cygwin Bash Here" "Icon" "$INSTDIR\icons\bash.ico"
-  WriteRegStr HKCR "Drive\shell\Open Cygwin Bash Here\command" "" '$DIR_modules\$GithubRepository\ConEmu.exe /cmd {cygwin bash}'
-
-  WriteRegStr HKCR "LibraryFolder\Background\shell\Open Cygwin Bash Here" "Icon" "$INSTDIR\icons\bash.ico"
-  WriteRegStr HKCR "LibraryFolder\Background\shell\Open Cygwin Bash Here\command" "" '$DIR_modules\$GithubRepository\ConEmu.exe /cmd {cygwin bash}'
-*/
- 
   ## Cleanup installation files
+  Delete "setup.log"
+  Delete "setup.log.full"
   !if "${DEBUG}" == false
     Delete "$INSTALLER"
   !endif
