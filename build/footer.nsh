@@ -29,7 +29,6 @@ Section "-post_section"
   ## Add to "Add/Remove Programs" or "Programs and Features"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "DisplayIcon"     "$DIR_icons\shark.ico"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "DisplayName"     "${PRODUCT_NAME}"
-  #WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "DisplayVersion"  "${PRODUCT_VERSION}"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "InstallDir"      "$INSTDIR"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "Publisher"       "Kenijo"
   WriteRegStr "${ROOT_KEY}" "${UNINST_KEY}" "UninstallString" "$INSTDIR\uninstall.exe"
@@ -40,6 +39,9 @@ Section "-post_section"
   WriteRegDWORD "${ROOT_KEY}" "${UNINST_KEY}" "EstimatedSize" "$0"
 
   WriteUninstaller  "$INSTDIR\uninstall.exe"
+
+  ## Execute the Context Menu Manager
+  Exec "$DIR_installer\shark_context_menu_manager.exe"
 SectionEnd
 
 Function .onInit
@@ -53,20 +55,7 @@ Function .onInit
       StrCpy $INSTDIR "$ProgramFiles32\${PRODUCT_NAME}"
     ${EndIf}
   ${EndIf}
-
-  ## This cope is used to define option selection instead of checkboxes
-  ## StrCpy $1 ${section_cygwin} ## Cygwin is selected by default
 FunctionEnd
-
-## This scope is used to define option selection instead of checkboxes
-##Function .onSelChange
-##    !insertmacro StartRadioButtons $1
-##    !insertmacro RadioButton ${section_cygwin}
-##    !insertmacro RadioButton ${section_git}
-##    !insertmacro RadioButton ${section_gow}
-##    !insertmacro RadioButton ${section_msys2}
-##  !insertmacro EndRadioButtons
-##FunctionEnd
 
 ##--------------------------------------------------------------------------------------------------
 ## This section creates the uninstaller
@@ -74,22 +63,48 @@ FunctionEnd
 Section Uninstall
   SetShellVarContext all
 
-  RMDir /r /REBOOTOK "$DIR_installer"
+  ## Remove install folder
+  RMDir /r /REBOOTOK "$INSTDIR"
 
-  RMDir   "$SMPROGRAMS\${PRODUCT_NAME}"
+  ## Remove Start Menu folder
+  RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
 
+  ## Delete registry keys
   DeleteRegKey "${ROOT_KEY}" "${UNINST_KEY}"
 
-  DeleteRegKey HKCR "*\shell\Open ${PRODUCT_NAME} Here"
-  DeleteRegKey HKCR "Directory\Background\shell\Open ${PRODUCT_NAME} Here"
-  DeleteRegKey HKCR "Directory\shell\Open ${PRODUCT_NAME} Here"
-  DeleteRegKey HKCR "Drive\shell\Open ${PRODUCT_NAME} Here"
-  DeleteRegKey HKCR "LibraryFolder\Background\shell\Open ${PRODUCT_NAME} Here"
-
-  DeleteRegKey HKCU "Console\ConEmu"
-  DeleteRegKey HKCU "Software\ConEmu"
-
-  DeleteRegKey HKCR "Folder\shell\Command Prompt Here Gow"
+  ## Clear all Context Menu
+  StrCpy $0 "shark_conemu_cmd_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_powershell_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_cygwin_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_git_bash_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_cmd"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_powershell"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_cygwin"
+  Call del_context_menu
+  StrCpy $0 "shark_conemu_git_bash"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_cmd_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_powershell_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_cygwin_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_git_bash_admin"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_cmd"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_powershell"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_cygwin"
+  Call del_context_menu
+  StrCpy $0 "shark_consolez_git_bash"
+  Call del_context_menu
 
   SetAutoClose true
 SectionEnd
@@ -102,4 +117,37 @@ FunctionEnd
 Function un.onInit
   MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "Are you sure you want to completely remove ${PRODUCT_NAME} and all of its components?" IDYES +2
   Abort
+FunctionEnd
+
+Function del_context_menu
+  ## Del Context Menu Variables
+  ## $0 Context Menu Registry Key
+
+  ## HKCR 32 bits
+  DeleteRegKey HKCR "*\shell\$0"
+  DeleteRegKey HKCR "Directory\Background\shell\$0"
+  DeleteRegKey HKCR "Directory\shell\$0"
+  DeleteRegKey HKCR "Drive\shell\$0"
+  DeleteRegKey HKCR "LibraryFolder\Background\shell\$0"
+
+  ## HKCR 64 bits
+  DeleteRegKey HKCR "Wow6432Node\*\shell\$0"
+  DeleteRegKey HKCR "Wow6432Node\Directory\Background\shell\$0"
+  DeleteRegKey HKCR "Wow6432Node\Directory\shell\$0"
+  DeleteRegKey HKCR "Wow6432Node\Drive\shell\$0"
+  DeleteRegKey HKCR "Wow6432Node\LibraryFolder\Background\shell\$0"
+
+  ## HKCU 32 bits
+  DeleteRegKey HKCU "*\shell\$0"
+  DeleteRegKey HKCU "Directory\Background\shell\$0"
+  DeleteRegKey HKCU "Directory\shell\$0"
+  DeleteRegKey HKCU "Drive\shell\$0"
+  DeleteRegKey HKCU "LibraryFolder\Background\shell\$0"
+
+  ## HKCU 64 bits
+  DeleteRegKey HKCU "Wow6432Node\*\shell\$0"
+  DeleteRegKey HKCU "Wow6432Node\Directory\Background\shell\$0"
+  DeleteRegKey HKCU "Wow6432Node\Directory\shell\$0"
+  DeleteRegKey HKCU "Wow6432Node\Drive\shell\$0"
+  DeleteRegKey HKCU "Wow6432Node\LibraryFolder\Background\shell\$0"
 FunctionEnd
