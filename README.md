@@ -1,15 +1,6 @@
 # shark
 This project started as a fork of [Cmder](http://cmder.net) and became its own full fledge version allowing users to select which components they want to include in their installation.
-It still uses the structure design of [Cmder](http://cmder.net) to keep the benefits of the updated its scripts.
-The following scripts have been moved and reworked:
-
-<pre>
-  - .\bin\alias.bat => .\bin\alias.cmd
-  - .\config\user-aliases.cmd => .\config\default\aliases.cmd
-  - .\config\user-profile.cmd => .\config\default\clink\profile.cmd
-  - .\vendor\clink.lua => .\config\clink.lua
-  - .\vendor\init.bat => .\init.cmd
-</pre>
+The structure design of [Cmder](http://cmder.net) has been slightly modified and the scripts reworked.
 
 ## Create the shell environment of your dreams
 Shark is a packaged installer that will allow you to create a fully customized shell environment through a single simple installer.
@@ -66,31 +57,13 @@ The releases are the compiled version of Shark.
 </pre>
 
 ---
-
 ## TODO
-  - Config file:
-    CMD
-    ConsoleZ
-    Git
-    PowerShell
-
-  - Theme (current one + one based on One Dark):
-    CMD (as a reg file?)
-    ConsoleZ
-    Powershell
-
-  - Execute Context Menu Manager inside the installer
-
-  - Finish uninstaller script
-  - Remove Context Menu Manager entries during uninstall process
-
-  - Create script that will load all binaries in the PATH
-  - Create environment variable that wil load in the PATH
-
-  - Check TODO in init.cmd (check shark\init.cmd vs shark\modules\init.cmd)
-  - Add npm as a new module
-
----
+## Those are not a priority to me right now as I don't use them much
+  - ConsoleZ
+      Define customize config file
+      Define theme file
+  - Git
+      Define profile
 
 ## How to compile your own version of Shrak
   1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0
