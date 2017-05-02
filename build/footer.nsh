@@ -74,37 +74,37 @@ Section Uninstall
 
   ## Clear all Context Menu
   StrCpy $0 "shark_conemu_cmd_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_powershell_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_cygwin_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_git_bash_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_cmd"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_powershell"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_cygwin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_conemu_git_bash"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_cmd_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_powershell_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_cygwin_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_git_bash_admin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_cmd"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_powershell"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_cygwin"
-  Call del_context_menu
+  Call un.del_context_menu
   StrCpy $0 "shark_consolez_git_bash"
-  Call del_context_menu
+  Call un.del_context_menu
 
   SetAutoClose true
 SectionEnd
@@ -119,7 +119,7 @@ Function un.onInit
   Abort
 FunctionEnd
 
-Function del_context_menu
+Function un.del_context_menu
   ## Del Context Menu Variables
   ## $0 Context Menu Registry Key
 
