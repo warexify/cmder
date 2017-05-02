@@ -1,5 +1,6 @@
 *.bak
 .vscode-upload.json
+.vscode/
 build/debug.nsi
 build/debug_cmm.nsi
 build/make.exe
@@ -21,4 +22,3 @@ modules/powerline-fonts
 modules/putty
 Thumbs.db
 _right click/
-.vscode/bookmarks.json
