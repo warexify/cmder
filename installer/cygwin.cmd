@@ -28,7 +28,7 @@ SET installer=%3
 SET local_package_dir=%4
 SET package_list=%5
 SET root=%2
-SET update=%6
+SET mode=%6
 
 cd %root%
 cd ..\..\installer
@@ -43,7 +43,7 @@ ECHO Installing Cygwin %architecture%
 ECHO Categories: %categories%
 
 :: Get all the packages and make a well formated list
-FOR /F "delims=" %%a IN (%package_list%) DO (
+FOR /F "delims=" %%a IN ('type %package_list%') DO (
   SET currentline=%%a
   IF NOT DEFINED packages (
     SET packages=!currentline!
@@ -56,12 +56,14 @@ ECHO Packages: %packages%
 ECHO Root Directory: %root%
 ECHO Local Package Directory: %local_package_dir%
 
-IF /I "%update%"=="update" (
-  :: Execute installer for update
-  %installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --root %root% --upgrade-also
-) ELSE (
+IF /I %mode%=="install" (
   :: Execute installer for install
   %installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --quiet-mode --root %root% --site %site% --upgrade-also
 )
+
+IF /I %mode%=="update" (
+  :: Execute installer for update
+  %installer% --arch %architecture% --categories %categories% --delete-orphans --download --local-install --local-package-dir %local_package_dir% --no-shortcuts --packages %packages% --root %root% --upgrade-also
+) 
 
 ENDLOCAL
