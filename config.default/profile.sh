@@ -13,11 +13,6 @@
 :: @license      MIT License
 :: @link         http://kenijo.github.io/shark/
 ::
-:: @package      profile.cmd
+:: @package      profile.sh
 :: @description  Use this file to run your own startup commands
 :: ----------------------------------------------------------------------------------------------------
-:: Turn off output
-@echo off
-
-:: call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"
-:: set "PATH=%shark_root%\modules\new-module;%PATH%"
