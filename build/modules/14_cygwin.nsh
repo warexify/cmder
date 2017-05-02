@@ -48,7 +48,7 @@ Section "Cygwin" section_cygwin
   skip_download:
 
   ## Install
-  nsExec::ExecToStack 'cygwin.cmd "$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages"'
+  nsExec::ExecToStack 'cygwin.cmd "$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages" "install"'
 
   ## Create a default cygwin profile with preset settings
   SetOutPath "$DIR_config\$NAME\home\"
