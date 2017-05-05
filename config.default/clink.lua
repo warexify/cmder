@@ -37,7 +37,9 @@ function set_prompt_filter()
     -- build our own prompt
     -- orig: $E[1;32;40m$P$S{git}{hg}$S$_$E[1;30;40m{lamb}$S$E[0m
     -- color codes: "\x1b[1;37;40m"
-    local cmder_prompt = "\x1b[1;32;40m{cwd} {git}{hg}{svn} \n\x1b[1;30;40m{lamb} \x1b[0m"
+		local cmder_prompt = "\x1b[0;37m[Path:\x1b[1;34m {cwd}\x1b[0;37m]\n\x1b[1;32m[{user}@{host}] \x1b[0;37mλ \x1b[0m"
+    cmder_prompt = string.gsub(cmder_prompt, "{user}", os.getenv("USERNAME"))
+    cmder_prompt = string.gsub(cmder_prompt, "{host}", os.getenv("COMPUTERNAME"))
     cmder_prompt = string.gsub(cmder_prompt, "{cwd}", cwd)
     if env == nil then
         lambda = "λ"
