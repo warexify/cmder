@@ -68,6 +68,11 @@ Section "Cygwin" section_cygwin
   ## Create shortcuts
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\cygwin.cmd" '"$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages" "update"' "$DIR_modules\$NAME\Cygwin-Terminal.ico"
 
+	## Configure Cygserver and set it up as a service
+	nsExec::ExecToStack "$DIR_modules\$NAME\bash.exe -c 'cygserver-config --yes'" 
+	## Start Cygserver service
+	nsExec::ExecToStack "$DIR_modules\$NAME\cygrunsrv.exe --start cygserver" 
+	
   ## Cleanup installation files
   Delete "setup.log"
   Delete "setup.log.full"

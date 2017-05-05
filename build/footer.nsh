@@ -63,6 +63,11 @@ FunctionEnd
 Section Uninstall
   SetShellVarContext all
 
+	## Stop Cygserver service
+	nsExec::ExecToStack "$DIR_modules\$NAME\cygrunsrv.exe --stop cygserver" 
+	## Remove Cygserver service
+	nsExec::ExecToStack "$DIR_modules\$NAME\cygrunsrv.exe --remove cygserver" 
+	
   ## Remove install folder
   RMDir /r /REBOOTOK "$INSTDIR"
 
