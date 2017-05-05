@@ -3,7 +3,7 @@ SCPAutoPwd\0\
 ACSinUTF\0\
 Comment\\
 CtrlTabSwitch\0\
-Password\v6033D3cqATHBCl8efj%2FUW1cOacg5An+sE\
+Password\1300b\
 ForegroundOnBell\0\
 SaveWindowPos\0\
 WindowState\0\
@@ -114,7 +114,7 @@ CapsLockCyr\0\
 Printer\\
 UTF8Override\1\
 CJKAmbigWide\0\
-LineCodePage\\
+LineCodePage\UTF-8\
 Wordness224\2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2\
 Wordness192\2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2\
 Wordness160\1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1\
@@ -180,11 +180,11 @@ FontQuality\3\
 FontHeight\10\
 FontCharSet\0\
 FontIsBold\0\
-Font\Courier%20New\
-TermHeight\24\
-TermWidth\80\
-WinTitle\%20SERVER%20\
-WinNameAlways\1\
+Font\Lucida%20Console\
+TermHeight\38\
+TermWidth\120\
+WinTitle\%25%25u@%25%25h\
+WinNameAlways\0\
 DisableBidi\0\
 DisableArabicShaping\0\
 CRImpliesLF\0\
@@ -199,8 +199,8 @@ BellOverload\1\
 BellWaveFile\\
 BeepInd\0\
 Beep\1\
-BlinkCur\0\
-CurType\0\
+BlinkCur\1\
+CurType\2\
 WindowBorder\1\
 SunkenEdge\0\
 HideMousePtr\0\
@@ -260,7 +260,7 @@ Compression\0\
 NoPTY\0\
 LocalUserName\\
 UserNameFromEnvironment\0\
-UserName\kenrick\
+UserName\\
 Environment\\
 ProxyLogToTerm\1\
 ProxyTelnetCommand\connect%20%25host%20%25port%5Cn\
