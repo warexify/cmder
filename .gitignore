@@ -5,7 +5,7 @@ build/debug.nsi
 build/debug_cmm.nsi
 build/make.exe
 build/nsis_contrib/ResourceHacker.ini
-build/shark.exe
+build/shark*.exe
 build/shark_context_menu_manager.exe
 config/
 modules/clink

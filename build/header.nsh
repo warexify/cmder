@@ -26,6 +26,19 @@ unicode                                       true
 ##--------------------------------------------------------------------------------------------------
 ## Installer name
 !define PRODUCT_NAME                          "shark"
+## Major version number
+!define PRODUCT_MAJOR_VERSION									"1"
+## Auto increment minor version number
+!define PRODUCT_VERSION_FILE									"version" 
+!include /NonFatal "${PRODUCT_VERSION_FILE}"
+!ifndef PRODUCT_MINOR_VERSION
+	!define PRODUCT_MINOR_VERSION 0 ;if we have no previous number
+!else
+	!delfile "${PRODUCT_VERSION_FILE}"
+!endif
+!define /math PRODUCT_NEXT_MINOR_VERSION ${PRODUCT_MINOR_VERSION} + 1
+!appendfile "${PRODUCT_VERSION_FILE}" "!define PRODUCT_MINOR_VERSION ${PRODUCT_NEXT_MINOR_VERSION}"
+!define PRODUCT_VERSION ${PRODUCT_MAJOR_VERSION}.${PRODUCT_MINOR_VERSION}
 ## Registry keys
 !define ROOT_KEY                              "HKLM"
 !define UNINST_KEY                            "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -42,8 +55,8 @@ unicode                                       true
 BrandingText                                  " "
 InstallDir                                    "\${PRODUCT_NAME}"
 InstallDirRegKey                              "${ROOT_KEY}" "${UNINST_KEY}" "InstallDir"
-Name                                          "${PRODUCT_NAME}"
-OutFile                                       "${PRODUCT_NAME}.exe"
+Name                                          "${PRODUCT_NAME} ${PRODUCT_VERSION}"
+OutFile                                       "${PRODUCT_NAME}_${PRODUCT_VERSION}.exe"
 RequestExecutionLevel                         admin
 SetCompressor                                 /SOLID lzma
 ShowInstDetails                               show
