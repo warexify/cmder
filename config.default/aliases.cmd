@@ -41,7 +41,6 @@ did=dir /A /D /N
 
 clear=cls
 e.=explorer .
-gl=git log --oneline --all --graph --decorate
 history=cat "%SHARK_ROOT%\config\clink\.history"
 pwd=cd
 shark=cd /d "%SHARK_ROOT%"
