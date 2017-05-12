@@ -39,6 +39,8 @@ alias ll='ls -1AChpv --color=auto'              # ls multi column listing of all
 alias dl='ls -1AChpv --color=auto'              # ls multi column listing of all files except . and .. with color
 
 alias cls='clear'                               # create cls command
+alias md=mkdir
+alias rd=rmdir
 alias root='sudo su -'                          # shortcut
 alias vi='vim'																	# Use vim over vi
-gl=git log --oneline --all --graph --decorate
+
