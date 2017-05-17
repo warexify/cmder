@@ -59,9 +59,6 @@ The releases are the compiled version of Shark.
 ---
 ## TODO
 ## Those are not a priority to me right now as I don't use them much
-  - ConsoleZ
-      Define customize config file
-      Define theme file
   - Git
       Define profile
 

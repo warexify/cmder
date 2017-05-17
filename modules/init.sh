@@ -15,7 +15,7 @@
 ::
 :: @package      init.sh
 :: @description  Init script for sh
-::                !!! THIS FILE IS OVERWRITTEN WHEN CMDER IS UPDATED
+::                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
 ::                !!! Use "%SHARK_ROOT%\config\profile.sh" to add your own startup commands
 :: ----------------------------------------------------------------------------------------------------
 
@@ -28,11 +28,11 @@ PATH=$PATH:${SHARK_ROOT}/modules/putty
 export PATH
 
 # Add portable user customizations ${SHARK_ROOT}/config/profile.sh,
-# these customizations will follow Cmder if $SHARK_ROOT is copied
+# these customizations will follow shark if $SHARK_ROOT is copied
 # to another machine.
 #
 # Add system specific users customizations to $HOME/.bashrc, these
-# customizations will not follow Cmder to another machine.
+# customizations will not follow shark to another machine.
 
 # We do this for bash as admin sessions since $SHARK_ROOT is not being set
 if [ "$SHARK_ROOT" == "" ] ; then

@@ -15,7 +15,7 @@
 ::
 :: @package      init.ps1
 :: @description  Init script for PowerShell
-::                !!! THIS FILE IS OVERWRITTEN WHEN CMDER IS UPDATED
+::                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
 ::                !!! Use "%SHARK_ROOT%\config\profile.ps1" to add your own startup commands
 :: ----------------------------------------------------------------------------------------------------
 
@@ -39,11 +39,11 @@ if(!$PSScriptRoot) {
     $PSScriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 }
 
-# Add Cmder modules directory to the autoload path.
-$CmderModulePath = Join-path $PSScriptRoot "psmodules/"
+# Add shark modules directory to the autoload path.
+$SharkModulePath = Join-path $PSScriptRoot "psmodules/"
 
-if( -not $env:PSModulePath.Contains($CmderModulePath) ){
-    $env:PSModulePath = $env:PSModulePath.Insert(0, "$CmderModulePath;")
+if( -not $env:PSModulePath.Contains($SharkModulePath) ){
+    $env:PSModulePath = $env:PSModulePath.Insert(0, "$SharkModulePath;")
 }
 
 try {
@@ -76,7 +76,7 @@ function Import-Git($Loaded){
         Import-Module Posh-Git > $null
     }
     if(-not ($GitModule) ) {
-        Write-Warning "Missing git support, install posh-git with 'Install-Module posh-git' and restart cmder."
+        Write-Warning "Missing git support, install posh-git with 'Install-Module posh-git' and restart shark."
     }
     # Make sure we only run once by alawys returning true
     return $true
@@ -96,9 +96,9 @@ function checkGit($Path) {
 
 # Move to the wanted location
 # This is either a env variable set by the user or the result of
-# cmder.exe setting this variable due to a commandline argument or a "cmder here"
-if ( $ENV:CMDER_START ) {
-    Set-Location -Path "$ENV:CMDER_START"
+# cmder.exe setting this variable due to a commandline argument or a "shark here"
+if ( $ENV:SHARK_START ) {
+    Set-Location -Path "$ENV:SHARK_START"
 }
 
 if (Get-Module PSReadline -ErrorAction "SilentlyContinue") {
@@ -113,10 +113,10 @@ $env:Path = "$Env:SHARK_ROOT\bin;$env:Path;$Env:SHARK_ROOT"
 #   Users should modify their profile.ps1 as it will be safe from updates.
 #
 
-# Pre assign the hooks so the first run of cmder gets a working prompt.
+# Pre assign the hooks so the first run of shark gets a working prompt.
 [ScriptBlock]$PrePrompt = {}
 [ScriptBlock]$PostPrompt = {}
-[ScriptBlock]$CmderPrompt = {
+[ScriptBlock]$SharkPrompt = {
     $Host.UI.RawUI.ForegroundColor = "White"
     Microsoft.PowerShell.Utility\Write-Host $pwd.ProviderPath -NoNewLine -ForegroundColor Green
     checkGit($pwd.ProviderPath)
@@ -131,21 +131,21 @@ Custom prompt functions are loaded in as constants to get the same behaviour
     $realLASTEXITCODE = $LASTEXITCODE
     $host.UI.RawUI.WindowTitle = Microsoft.PowerShell.Management\Split-Path $pwd.ProviderPath -Leaf
     PrePrompt | Microsoft.PowerShell.Utility\Write-Host -NoNewline
-    CmderPrompt
+    SharkPrompt
     Microsoft.PowerShell.Utility\Write-Host "`nλ " -NoNewLine -ForegroundColor "DarkGray"
     PostPrompt | Microsoft.PowerShell.Utility\Write-Host -NoNewline
     $global:LASTEXITCODE = $realLASTEXITCODE
     return " "
 }
 
-$CmderUserProfilePath = Join-Path $env:SHARK_ROOT "config\profile.ps1"
-if(Test-Path $CmderUserProfilePath) {
+$SharkUserProfilePath = Join-Path $env:SHARK_ROOT "config\profile.ps1"
+if(Test-Path $SharkUserProfilePath) {
     # Create this file and place your own command in there.
-    . "$CmderUserProfilePath"
+    . "$SharkUserProfilePath"
 } else {
 # This multiline string cannot be indented, for this reason I've not indented the whole block
 
-Write-Host -BackgroundColor Darkgreen -ForegroundColor White "First Run: Creating user startup file: $CmderUserProfilePath"
+Write-Host -BackgroundColor Darkgreen -ForegroundColor White "First Run: Creating user startup file: $SharkUserProfilePath"
 
 $UserProfileTemplate = @'
 # Use this file to run your own startup commands
@@ -153,10 +153,10 @@ $UserProfileTemplate = @'
 ## Prompt Customization
 <#
 .SYNTAX
-    <PrePrompt><CMDER DEFAULT>
+    <PrePrompt><SHARK DEFAULT>
     λ <PostPrompt> <repl input>
 .EXAMPLE
-    <PrePrompt>N:\Documents\src\cmder [master]
+    <PrePrompt>N:\Documents\src\shark [master]
     λ <PostPrompt> |
 #>
 
@@ -164,8 +164,8 @@ $UserProfileTemplate = @'
 
 }
 
-# Replace the cmder prompt entirely with this.
-# [ScriptBlock]$CmderPrompt = {}
+# Replace the shark prompt entirely with this.
+# [ScriptBlock]$SharkPrompt = {}
 
 [ScriptBlock]$PostPrompt = {
 
@@ -176,13 +176,13 @@ $UserProfileTemplate = @'
 
 '@
 
-New-Item -ItemType File -Path $CmderUserProfilePath -Value $UserProfileTemplate > $null
+New-Item -ItemType File -Path $SharkUserProfilePath -Value $UserProfileTemplate > $null
 
 }
 
 # Once Created these code blocks cannot be overwritten
 Set-Item -Path function:\PrePrompt   -Value $PrePrompt   -Options Constant
-Set-Item -Path function:\CmderPrompt -Value $CmderPrompt -Options Constant
+Set-Item -Path function:\SharkPrompt -Value $SharkPrompt -Options Constant
 Set-Item -Path function:\PostPrompt  -Value $PostPrompt  -Options Constant
 
 # Functions can be made constant only at creation time
