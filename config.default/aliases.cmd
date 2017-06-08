@@ -35,14 +35,14 @@ fgrep=fgrep --color=auto
 ls=ls -1Ahopv --color=auto
 ll=ls -1AChpv --color=auto
 
-dir=dir /A /N
-dib=dir /A /B /N
-did=dir /A /D /N
+dir=dir /A /N $*
+dib=dir /A /B /N $*
+did=dir /A /D /N $*
 
-clear=cls
+clear=cls $*
 e.=explorer .
 history=cat "%SHARK_ROOT%\config\clink\.history"
 pwd=cd
 shark=cd /d "%SHARK_ROOT%"
 unalias=alias /d $1
-vi=vim
+vi=vim $*
