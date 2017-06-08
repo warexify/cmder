@@ -57,10 +57,6 @@ The releases are the compiled version of Shark.
 </pre>
 
 ---
-## TODO
-## Those are not a priority to me right now as I don't use them much
-  - Git
-      Define profile
 
 ## How to compile your own version of Shrak
   1. Download and install [NSIS](http://nsis.sourceforge.net). Currently tested with NSIS 3.0
