@@ -1,6 +1,6 @@
 -- default script for clink, called by init.cmd when injecting clink
 
--- !!! THIS FILE IS OVERWRITTEN WHEN CMDER IS UPDATED
+-- !!! THIS FILE IS OVERWRITTEN WHEN shark IS UPDATED
 -- !!! Use "%SHARK_ROOT%\config\clink\<whatever>.lua" to add your lua startup scripts
 
 -- At first, load the original clink.lua file
@@ -37,16 +37,16 @@ function set_prompt_filter()
     -- build our own prompt
     -- orig: $E[1;32;40m$P$S{git}{hg}$S$_$E[1;30;40m{lamb}$S$E[0m
     -- color codes: "\x1b[1;37;40m"
-		local cmder_prompt = "\x1b[0;37m[Path:\x1b[1;34m {cwd}\x1b[0;37m]\n\x1b[1;32m[{user}@{host}] \x1b[0;37mλ \x1b[0m"
-    cmder_prompt = string.gsub(cmder_prompt, "{user}", os.getenv("USERNAME"))
-    cmder_prompt = string.gsub(cmder_prompt, "{host}", os.getenv("COMPUTERNAME"))
-    cmder_prompt = string.gsub(cmder_prompt, "{cwd}", cwd)
+    local shark_prompt = "\x1b[0;37m[Path:\x1b[1;34m {cwd}\x1b[0;37m]\n\x1b[1;32m[{user}@{host}] \x1b[0;37mλ \x1b[0m"
+    shark_prompt = string.gsub(shark_prompt, "{user}", os.getenv("USERNAME"))
+    shark_prompt = string.gsub(shark_prompt, "{host}", os.getenv("COMPUTERNAME"))
+    shark_prompt = string.gsub(shark_prompt, "{cwd}", cwd)
     if env == nil then
         lambda = "λ"
     else
         lambda = "("..env..") λ"
     end
-    clink.prompt.value = string.gsub(cmder_prompt, "{lamb}", lambda)
+    clink.prompt.value = string.gsub(shark_prompt, "{lamb}", lambda)
 end
 
 ---
