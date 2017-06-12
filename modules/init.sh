@@ -1,31 +1,23 @@
-::----------------------------------------------------------------------------------------------------
-:: shark
-:: The shell environment of your dreams
-::
-:: Shark is a package installer that will allow you to create a fully customized shell environment
-:: through a single simple installer. It takes the hard work out of downloading and configuring all
-:: the components you need. Shark simplifies the installation by asking simple questions and taking
-:: care of downloading and installing everything for you from trusted sources (official repositories).
-:: It has a modular architecture that allows anyone to add and improve the installer easilly.
-::
-:: @author       Kenrick JORUS
-:: @copyright    2016 Kenrick JORUS
-:: @license      MIT License
-:: @link         http://kenijo.github.io/shark/
-::
-:: @package      init.sh
-:: @description  Init script for sh
-::                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
-::                !!! Use "%SHARK_ROOT%\config\profile.sh" to add your own startup commands
-:: ----------------------------------------------------------------------------------------------------
-
-PATH=$PATH:${SHARK_ROOT}/bin
-PATH=$PATH:${SHARK_ROOT}/modules/cygwin/bin
-PATH=$PATH:${SHARK_ROOT}/modules/git/bin
-PATH=$PATH:${SHARK_ROOT}/modules/gow/bin
-PATH=$PATH:${SHARK_ROOT}/modules/php
-PATH=$PATH:${SHARK_ROOT}/modules/putty
-export PATH
+#----------------------------------------------------------------------------------------------------
+# shark
+# The shell environment of your dreams
+#
+# Shark is a package installer that will allow you to create a fully customized shell environment
+# through a single simple installer. It takes the hard work out of downloading and configuring all
+# the components you need. Shark simplifies the installation by asking simple questions and taking
+# care of downloading and installing everything for you from trusted sources (official repositories).
+# It has a modular architecture that allows anyone to add and improve the installer easilly.
+#
+# @author       Kenrick JORUS
+# @copyright    2016 Kenrick JORUS
+# @license      MIT License
+# @link         http://kenijo.github.io/shark/
+#
+# @package      init.sh
+# @description  Init script for sh
+#                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
+#                !!! Use "%SHARK_ROOT%\config\profile.sh" to add your own startup commands
+# ----------------------------------------------------------------------------------------------------
 
 # Add portable user customizations ${SHARK_ROOT}/config/profile.sh,
 # these customizations will follow shark if $SHARK_ROOT is copied

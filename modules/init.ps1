@@ -1,50 +1,46 @@
-﻿::----------------------------------------------------------------------------------------------------
-:: shark
-:: The shell environment of your dreams
-::
-:: Shark is a package installer that will allow you to create a fully customized shell environment
-:: through a single simple installer. It takes the hard work out of downloading and configuring all
-:: the components you need. Shark simplifies the installation by asking simple questions and taking
-:: care of downloading and installing everything for you from trusted sources (official repositories).
-:: It has a modular architecture that allows anyone to add and improve the installer easilly.
-::
-:: @author       Kenrick JORUS
-:: @copyright    2016 Kenrick JORUS
-:: @license      MIT License
-:: @link         http://kenijo.github.io/shark/
-::
-:: @package      init.ps1
-:: @description  Init script for PowerShell
-::                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
-::                !!! Use "%SHARK_ROOT%\config\profile.ps1" to add your own startup commands
-:: ----------------------------------------------------------------------------------------------------
-
-# We do this for Powershell as Admin Sessions because SHARK_ROOT is not being set.
-if (! $ENV:SHARK_ROOT ) {
-    $ENV:SHARK_ROOT = resolve-path( $ENV:ConEmuDir + "\..\.." )
-}
-
-# Remove trailing '\'
-$ENV:SHARK_ROOT = (($ENV:SHARK_ROOT).trimend("\"))
-
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\bin" )
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\modules\cygwin\bin" )
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\modules\git\bin" )
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\modules\gow\bin" )
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\modules\php" )
-$ENV:PATH += resolve-path( $ENV:SHARK_ROOT + "\modules\putty" )
+﻿#----------------------------------------------------------------------------------------------------
+# shark
+# The shell environment of your dreams
+#
+# Shark is a package installer that will allow you to create a fully customized shell environment
+# through a single simple installer. It takes the hard work out of downloading and configuring all
+# the components you need. Shark simplifies the installation by asking simple questions and taking
+# care of downloading and installing everything for you from trusted sources (official repositories).
+# It has a modular architecture that allows anyone to add and improve the installer easilly.
+#
+# @author       Kenrick JORUS
+# @copyright    2016 Kenrick JORUS
+# @license      MIT License
+# @link         http://kenijo.github.io/shark/
+#
+# @package      init.ps1
+# @description  Init script for PowerShell
+#                !!! THIS FILE IS OVERWRITTEN WHEN SHARK IS UPDATED
+#                !!! Use "%SHARK_ROOT%\config\profile.ps1" to add your own startup commands
+# ----------------------------------------------------------------------------------------------------
 
 # Compatibility with PS major versions <= 2
 if(!$PSScriptRoot) {
     $PSScriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 }
 
-# Add shark modules directory to the autoload path.
-$SharkModulePath = Join-path $PSScriptRoot "psmodules/"
+# Remove trailing '\'
+$PSScriptRoot = (($PSScriptRoot).trimend("\"))
 
-if( -not $env:PSModulePath.Contains($SharkModulePath) ){
-    $env:PSModulePath = $env:PSModulePath.Insert(0, "$SharkModulePath;")
+# We do this for Powershell as Admin Sessions because SHARK_ROOT is not being set.
+if (! $ENV:SHARK_ROOT ) {
+    $ENV:SHARK_ROOT = resolve-path( $PSScriptRoot + "\.." )
 }
+
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\bin;"
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\modules\cygwin\bin;"
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\modules\git\bin;"
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\modules\gow\bin;"
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\modules\php;"
+$ENV:PATH = $ENV:PATH + ";" + $ENV:SHARK_ROOT + "\modules\putty;"
+
+# Add shark modules directory to the autoload path.
+$SharkModulePath = Join-path $ENV:SHARK_ROOT "bin/"
 
 try {
     Get-command -Name "vim" -ErrorAction Stop >$null
