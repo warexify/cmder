@@ -18,6 +18,12 @@ if [ -f "${HOME}/.aliases" ]; then
 fi
 
 ###############################################################################
+# Define personal dircolors
+if [ -f "${HOME}/.dircolors" ] ; then
+	eval `dircolors -b ${HOME}/.dircolors`
+fi
+
+###############################################################################
 # This fixes the backspace when telnetting in.
 # if [ "$TERM" != "linux" ]; then
 #   stty erase
