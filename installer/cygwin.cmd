@@ -31,11 +31,7 @@ SET root=%2
 SET mode=%6
 
 cd %root%
-cd ..\..\installer
-
-:: Update Cygwin installer
-DEL cygwin-x86_64.exe
-curl.exe -L "https://cygwin.com/setup-x86_64.exe" -o "cygwin-x86_64.exe" -s
+cd ..\..\modules\cygwin\setup
 
 ::SET site=http://mirrors.kernel.org/sourceware/cygwin/
 SET site=http://mirrors.xmission.com/cygwin/

@@ -33,7 +33,7 @@ Section "Cygwin" section_cygwin
   SetOutPath "$DIR_installer"
   SetOverwrite ifnewer
 
-  StrCpy $INSTALLER "cygwin-$arch.exe"
+  StrCpy $INSTALLER "setup-$arch.exe"
   StrCpy $NAME "cygwin"
   StrCpy $SHORTCUT "Cygwin"
 
@@ -41,14 +41,12 @@ Section "Cygwin" section_cygwin
   Delete $INSTALLER
   RMDir /r "$DIR_modules\$NAME"
 
-  ## Check if installer has already been downloaded
-  IfFileExists $INSTALLER skip_download 0
-    ## Download latest version
-    inetc::get /NOCANCEL "https://cygwin.com/setup-$arch.exe" "$INSTALLER" /END
-  skip_download:
-
+  ## Download latest version
+  CreateDirectory "$DIR_modules\cygwin\setup"
+  inetc::get /NOCANCEL "https://cygwin.com/$INSTALLER" "$DIR_modules\cygwin\setup\$INSTALLER" /END
+ 
   ## Install
-  nsExec::ExecToStack 'cygwin.cmd "$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages" "install"'
+  nsExec::ExecToStack 'cygwin.cmd "$arch" "$DIR_modules\$NAME" "$DIR_modules\cygwin\setup\\$INSTALLER" "$DIR_modules\cygwin\setup" "$DIR_config\$NAME\cygwin-packages" "install"'
 
   ## Create a default cygwin profile with preset settings
   SetOutPath "$DIR_config\$NAME\home\"
@@ -66,7 +64,7 @@ Section "Cygwin" section_cygwin
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\home" "$DIR_config\$NAME\home" $0
 
   ## Create shortcuts
-  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\cygwin.cmd" '"$arch" "$DIR_modules\$NAME" "$DIR_installer\$INSTALLER" "$DIR_installer\cygwin_local_package" "$DIR_config\$NAME\cygwin-packages" "update"' "$DIR_modules\$NAME\Cygwin-Terminal.ico"
+  CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT Packages.lnk" "$DIR_installer\cygwin.cmd" '"$arch" "$DIR_modules\$NAME" "$DIR_modules\cygwin\setup\$INSTALLER" "$DIR_modules\cygwin\setup" "$DIR_config\$NAME\cygwin-packages" "update"' "$DIR_modules\$NAME\Cygwin-Terminal.ico"
 
 	## Configure Cygserver and set it up as a service
 	nsExec::ExecToStack "$DIR_modules\$NAME\bash.exe -c 'cygserver-config --yes'" 
