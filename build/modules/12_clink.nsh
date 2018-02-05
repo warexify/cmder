@@ -25,7 +25,7 @@ Section "Clink" section_clink
 
   StrCpy $GitHub_User         "mridgers"
   StrCpy $GitHub_Repository   "clink"
-  StrCpy $GitHub_FilePattern  "(.*).zip"
+  StrCpy $GitHub_FilePattern  "clink_(.*).zip"
   StrCpy $INSTALLER           "clink.zip"
 
   ## Delete previous version
