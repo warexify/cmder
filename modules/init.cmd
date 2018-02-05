@@ -100,7 +100,7 @@ for /F "delims=" %%F in ('where git.exe 2^>nul') do @(
 if exist "%SHARK_ROOT%\modules\git" (
   set "GIT_INSTALL_ROOT=%SHARK_ROOT%\modules\git"
   call :verbose-output Add the minimal git commands to the front of the path
-  set "PATH=!GIT_INSTALL_ROOT!\cmd;%PATH%"
+  set "PATH=%PATH%;!GIT_INSTALL_ROOT!\cmd"
 ) else (
   goto :NO_GIT
 )

@@ -42,5 +42,4 @@ alias cls='clear'                               # create cls command
 alias md=mkdir
 alias rd=rmdir
 alias root='sudo su -'                          # shortcut
-alias vi='vim'																	# Use vim over vi
-
+alias vi='vim'                                  # Use vim over vi

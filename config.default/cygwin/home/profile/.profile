@@ -65,3 +65,27 @@ export PS2="\[\e[1;37m\]> \[\e[0m\]"
 ###############################################################################
 # Set the title for the window
 echo -en "\e]0; `hostname` \a";
+
+###############################################################################
+# Retrieve the shark folder
+
+if [ "$SHARK_ROOT" == "" ] ; then
+    case "$ConEmuDir" in *\\*) SHARK_ROOT=$( cd "$(cygpath -u "$ConEmuDir")/../.." ; pwd );; esac
+else
+    case "$SHARK_ROOT" in *\\*) SHARK_ROOT="$(cygpath -u "$SHARK_ROOT")";; esac
+fi
+
+# Remove any trailing '/'
+SHARK_ROOT=$(echo $SHARK_ROOT | sed 's:/*$::')
+export SHARK_ROOT
+echo $SHARK_ROOT
+
+###############################################################################
+# Expand PATH to include sharks binaries
+PATH=${PATH}:${SHARK_ROOT}/bin
+PATH=${PATH}:${SHARK_ROOT}/modules/cygwin/bin
+PATH=${PATH}:${SHARK_ROOT}/modules/git/bin
+PATH=${PATH}:${SHARK_ROOT}/modules/gow/bin
+PATH=${PATH}:${SHARK_ROOT}/modules/php
+PATH=${PATH}:${SHARK_ROOT}/modules/putty
+export PATH
