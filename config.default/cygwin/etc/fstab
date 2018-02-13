@@ -5,4 +5,4 @@
 #    see https://cygwin.com/cygwin-ug-net/using.html#mount-table
 
 # This is default anyway:
-none / cygdrive binary,posix=0,user 0 0
+none / cygdrive binary,noacl,posix=0,user 0 0
