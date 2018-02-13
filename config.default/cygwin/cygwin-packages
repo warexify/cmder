@@ -25,6 +25,7 @@ gawk
 gcc
 gcc-core
 gettext
+gnupg
 gnutls
 grep
 groff

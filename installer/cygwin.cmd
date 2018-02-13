@@ -33,9 +33,7 @@ SET mode=%6
 cd %root%
 cd ..\..\modules\cygwin\setup
 
-::SET site=http://mirrors.kernel.org/sourceware/cygwin/
-SET site=http://mirrors.xmission.com/cygwin/
-
+SET site=http://cygwin.mirrors.hoobly.com/
 :: define the list separator
 SET separator=,
 
