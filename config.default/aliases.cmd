@@ -25,15 +25,15 @@
 ;= goto:eof
 ;= Add aliases below here
 
-df=df -h
-du=du -h
+df=df -h $*
+du=du -h $*
 
-grep=grep --color=auto
-egrep=egrep --color=auto
-fgrep=fgrep --color=auto
+grep=grep --color=auto $*
+egrep=egrep --color=auto $*
+fgrep=fgrep --color=auto $*
 
-ls=ls -1Ahopv --color=auto
-ll=ls -1AChpv --color=auto
+ls=ls -1Ahopv --color=auto $*
+ll=ls -1AChpv --color=auto $*
 
 dir=dir /A /N $*
 dib=dir /A /B /N $*
