@@ -29,8 +29,6 @@ alias df='df -h'                                # Default to human readable figu
 alias du='du -h'                                # Default to human readable figures
 
 alias grep='grep --color=auto'                  # show differences in colour
-alias egrep='egrep --color=auto'                # show differences in colour
-alias fgrep='fgrep --color=auto'                # show differences in colour
 
 alias ls='ls -1Ahlpv --color=auto'              # ls long listing of all files except . and .. with color, human readable
 alias dir='ls -1Ahlpv --color=auto'             # ls long listing of all files except . and .. with color, human readable
