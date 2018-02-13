@@ -41,9 +41,19 @@ Section "PuTTY" section_putty
 
   ## Download latest version
     ## Copy kitty_portable.exe from bin folder as putty.exe (until a direct link is found to download it)
-    CopyFiles /SILENT "$DIR_installer\kitty_portable.exe" "putty.exe"
-    ## Disable download from the original PuTTY
-    #inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe"         "putty.exe"     /END
+    #CopyFiles /SILENT "$DIR_installer\kitty_portable.exe" "putty.exe"
+  #nsExec::ExecToStack '"curl.exe" "https://www.fosshub.com/KiTTY.html/kitty_portable.exe" | "sed.exe" "s/\d032/\n/g;s/http/\nhttp/g;s/\.exe/\.exe\n/g" | "grep.exe" "badurl"'
+  ## Download the FossHub HTML page
+  inetc::get /NOCANCEL "https://www.fosshub.com/KiTTY.html/kitty_portable.exe" "$DIR_installer\kitty_portable" /END
+  ## Extract the download link
+  nsExec::ExecToStack '"$DIR_installer\grep.exe" -E -o "https://.*badurl.*kitty_portable\.exe" "$DIR_installer\kitty_portable"'
+  Pop $0 # return value/error/timeout
+  Pop $1 # printed text, up to ${NSIS_MAX_STRLEN}
+  Delete "$DIR_installer\kitty_portable"
+  inetc::get /NOCANCEL "$1" "putty.exe" /END
+ 
+  ## Disable download from the original PuTTY
+  #inetc::get /NOCANCEL "http://puttytray.goeswhere.com/download/putty.exe"         "putty.exe"     /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe"      "pscp.exe"      /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/psftp.exe"     "psftp.exe"     /END
   inetc::get /NOCANCEL "http://the.earth.li/~sgtatham/putty/latest/x86/plink.exe"     "plink.exe"     /END
