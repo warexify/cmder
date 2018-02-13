@@ -48,14 +48,12 @@ Section /o "Git for Windows" section_git-for-windows
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$GitHub_Repository" -y "$INSTALLER" "*"'
+  nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules\$GitHub_Repository" -y "$INSTALLER" "*"'
   nsExec::ExecToStack '$DIR_modules\$GitHub_Repository\post-install.bat'
 
   ## Cleanup installation files
-  !if "${DEBUG}" == false
-    Delete "$GitHub_Repository"
-    Delete "$INSTALLER"
-  !endif
+  Delete "$DIR_installer\$GitHub_Repository"
+  Delete "$DIR_installer\$INSTALLER"
 SectionEnd
 
 LangString desc_git-for-windows ${LANG_ENGLISH} "Git for Windows is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals."

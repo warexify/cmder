@@ -47,15 +47,13 @@ Section "-apt-cyg" section_apt-cyg
    skip_download:
 
     ## Install
-    nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
+    nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
     CopyFiles "$DIR_modules\$GitHub_Repository-master\apt-cyg" "$DIR_modules\$NAME\bin\apt-cyg"
     RMDir /r "$DIR_modules\$GitHub_Repository-master"
     nsExec::ExecToStack '"$DIR_modules\$NAME\bin\chmod.exe" +x "$DIR_modules\$NAME\bin\apt-cyg"'
 
     ## Cleanup installation files
-    !if "${DEBUG}" == false
-      Delete "$INSTALLER"
-    !endif
+    Delete "$DIR_installer\$INSTALLER"
   end:
 SectionEnd
 

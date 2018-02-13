@@ -44,7 +44,7 @@ Section "ConEmu" section_conemu
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER"'
+  nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER"'
   ${CreateSymbolicLinkFile} "$DIR_modules\$NAME\conemu.xml" "$DIR_config\conemu.xml" $0
   ## Register ConEmu as the default console manager
   ExecWait 'ConEmu.exe /NoUpdate /LoadCfgFile "$DIR_config\conemu.xml" /Icon "$DIR_icons\shark.ico" /SetDefTerm /UpdateJumpList /Exit'
@@ -77,11 +77,9 @@ Section "ConEmu" section_conemu
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\More\Show ANSI colors.lnk"      "$DIR_modules\$NAME\$2" "-dir %USERPROFILE% -title ${PRODUCT_NAME} -run $\"{More::Show ANSI colors}$\""      "$DIR_icons\shark_white.ico"
 
   ## Cleanup installation files
-  Delete "$GitHub_Repository"
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-    Delete "$NAME"
-  !endif
+  Delete "$DIR_installer\$GitHub_Repository"
+  Delete "$DIR_installer\$INSTALLER"
+  Delete "$DIR_installer\$NAME"
 SectionEnd
 
 LangString desc_conemu ${LANG_ENGLISH} "ConEmu is a Windows console emulator with tabs, which presents multiple consoles and simple GUI applications as one customizable GUI window with various features."

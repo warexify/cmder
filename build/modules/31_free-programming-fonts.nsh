@@ -39,7 +39,7 @@ Section "-Free Programming Fonts" section_free-programming-fonts
  skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
+  nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules\" -y "$INSTALLER" "$GitHub_Repository-master*\*"'
   Sleep 1000
   Rename "$DIR_modules\$GitHub_Repository-master" "$DIR_modules\$NAME"
 
@@ -51,9 +51,7 @@ Section "-Free Programming Fonts" section_free-programming-fonts
            "
 
   ## Cleanup installation files
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-  !endif
+  Delete "$DIR_installer\$INSTALLER"
 SectionEnd
 
 LangString desc_free-programming-fonts ${LANG_ENGLISH} "Beautiful fonts for people who love to code."

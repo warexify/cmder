@@ -40,12 +40,10 @@ Section /o "Gow" section_gow
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe e -aoa -o"$DIR_modules\$GitHub_Repository" -y "$INSTALLER" "gow-master\bin\*"'
+  nsExec::ExecToStack '7za.exe e -aoa -o"$DIR_modules\$GitHub_Repository" -y "$INSTALLER" "gow-master\bin\*"'
 
   ## Cleanup installation files
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-  !endif
+  Delete "$DIR_installer\$INSTALLER"
 SectionEnd
 
 LangString desc_gow ${LANG_ENGLISH} "Gow (Gnu On Windows) is the lightweight alternative to Cygwin. It installs over 100 extremely useful open source UNIX applications compiled as native win32 binaries. It is designed to be as small as possible, about 18 MB, as opposed to Cygwin which can run well over 100 MB depending upon options."

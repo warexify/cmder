@@ -25,7 +25,7 @@ Section "Clink" section_clink
 
   StrCpy $GitHub_User         "mridgers"
   StrCpy $GitHub_Repository   "clink"
-  StrCpy $GitHub_FilePattern  "clink_(.*).zip"
+  StrCpy $GitHub_FilePattern  "(.*).zip"
   StrCpy $INSTALLER           "clink.zip"
 
   ## Delete previous version
@@ -47,7 +47,7 @@ Section "Clink" section_clink
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules" -y "$INSTALLER" "$GitHub_Repository*\*"'
+  nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules" -y "$INSTALLER" "$GitHub_Repository*\*"'
   Sleep 1000
   Rename "$DIR_modules\$4" "$DIR_modules\$Github_Repository"
 
@@ -62,10 +62,8 @@ Section "Clink" section_clink
   #${EndIf}
 
   ## Cleanup installation files
-  Delete "$GitHub_Repository"
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-  !endif
+  Delete "$DIR_installer\$GitHub_Repository"
+  Delete "$DIR_installer\$INSTALLER"
 SectionEnd
 
 LangString desc_clink ${LANG_ENGLISH} "Clink combines the native Windows shell cmd.exe with the powerful command line editing features of the GNU Readline library, which provides rich completion, history, and line-editing capabilities."

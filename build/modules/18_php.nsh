@@ -54,15 +54,13 @@ Section "PHP" section_php
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe e -aoa -o"$DIR_modules\php" -y "$INSTALLER" "*"'
+  nsExec::ExecToStack '7za.exe e -aoa -o"$DIR_modules\php" -y "$INSTALLER" "*"'
 
   ## Cleanup installation files
-  Delete "php_sha1sum"
-  Delete "php_version"
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-    Delete "$NAME"
-  !endif
+  Delete "$DIR_installer\php_sha1sum"
+  Delete "$DIR_installer\php_version"
+  Delete "$DIR_installer\$INSTALLER"
+  Delete "$DIR_installer\$NAME"
 SectionEnd
 
 LangString desc_php ${LANG_ENGLISH} "PHP is a server-side scripting language designed for web development but also used as a general-purpose programming language."

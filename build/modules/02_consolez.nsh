@@ -45,17 +45,15 @@ Section /o "ConsoleZ" section_consolez
   skip_download:
 
   ## Install
-  nsExec::ExecToStack '7z.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER" "*"'
+  nsExec::ExecToStack '7za.exe x -aoa -o"$DIR_modules\$NAME" -y "$INSTALLER" "*"'
   ${CreateSymbolicLinkFile} "$DIR_modules\$NAME\console.xml" "$DIR_config\console.xml" $0
 
   ## Create shortcuts
   CreateShortCut /NoWorkingDir "$SMPROGRAMS\${PRODUCT_NAME}\$SHORTCUT.lnk" "$DIR_modules\$NAME\Console.exe"
 
   ## Cleanup installation files
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-    Delete "$NAME"
-  !endif
+  Delete "$DIR_installer\$INSTALLER"
+  Delete "$DIR_installer\$NAME"
 SectionEnd
 
 LangString desc_consolez ${LANG_ENGLISH} "This is a modified version of Console 2 for a better experience under Windows Vista/7/8/10 and a better visual rendering."

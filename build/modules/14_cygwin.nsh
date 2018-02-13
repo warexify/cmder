@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------------------------------
-shark
+  shark
 The shell environment of your dreams
 
 Shark is a package installer that will allow you to create a fully customized shell environment
@@ -59,6 +59,11 @@ Section "Cygwin" section_cygwin
   CopyFiles /silent "$DIR_config\$NAME\etc\fstab" "$DIR_modules\$NAME\etc"
   SetOverwrite ifnewer
 
+  ## Copy the selected mirror to /etc/setup
+  SetOverwrite on
+  CopyFiles /silent "$DIR_config\$NAME\etc\setup\last-mirror" "$DIR_modules\$NAME\etc\setup"
+  SetOverwrite ifnewer
+  
   ## Create a symbolink link between the Cygwin home folder and the our home folder
   RMDir /r "$DIR_modules\$NAME\home"
   ${CreateSymbolicLinkFolder} "$DIR_modules\$NAME\home" "$DIR_config\$NAME\home" $0
@@ -72,11 +77,9 @@ Section "Cygwin" section_cygwin
 	nsExec::ExecToStack "$DIR_modules\$NAME\cygrunsrv.exe --start cygserver" 
 	
   ## Cleanup installation files
-  Delete "setup.log"
-  Delete "setup.log.full"
-  !if "${DEBUG}" == false
-    Delete "$INSTALLER"
-  !endif
+  Delete "$DIR_installer\setup.log"
+  Delete "$DIR_installer\setup.log.full"
+  Delete "$DIR_installer\$INSTALLER"
 SectionEnd
 
 LangString desc_cygwin ${LANG_ENGLISH} "Cygwin is a large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows."
