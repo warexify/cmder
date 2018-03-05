@@ -30,15 +30,24 @@ SET package_list=%5
 SET root=%2
 SET mode=%6
 
-cd %root%
-cd ..\..\modules\cygwin\setup
-
 SET site=http://cygwin.mirrors.hoobly.com/
 :: define the list separator
 SET separator=,
 
-ECHO Installing Cygwin %architecture%
-ECHO Categories: %categories%
+IF /I %mode%=="install" (
+  ECHO Installing Cygwin %architecture%
+  ECHO Categories: %categories%
+)
+
+IF /I %mode%=="update" (
+  ECHO Updating Cygwin %architecture%
+  
+  :: Update Cygwin setup.ini
+  %root%\bin\bash.exe --login -c '/bin/apt-cyg update'
+
+  :: Update Cygwin installer
+  %root%\bin\bash.exe --login -c '/bin/apt-cyg update-setup'
+) 
 
 :: Get all the packages and make a well formated list
 FOR /F "delims=" %%a IN ('type %package_list%') DO (
