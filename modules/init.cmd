@@ -119,7 +119,7 @@ if defined GIT_INSTALL_ROOT (
 endlocal & set "PATH=%PATH%" & set "SVN_SSH=%SVN_SSH%" & set "GIT_INSTALL_ROOT=%GIT_INSTALL_ROOT%"
 
 :: Enhance Path
-set "PATH=%SHARK_ROOT%\bin;%PATH%;%SHARK_ROOT%\"
+set "PATH=%PATH%;%SHARK_ROOT%\"
 
 :: Run custom startup script
 call "%SHARK_ROOT%\config\profile.cmd"
