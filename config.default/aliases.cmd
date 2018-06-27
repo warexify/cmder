@@ -32,12 +32,23 @@ grep=grep --color=auto $*
 egrep=egrep --color=auto $*
 fgrep=fgrep --color=auto $*
 
-ls=ls -1Ahopv --color=auto $*
-ll=ls -1AChpv --color=auto $*
+;= :: ls --help
+;= ::  -A, --almost-all           do not list implied . and ..
+;= ::  -F, --classify             append indicator (one of */=>@|) to entries
+;= ::  -h, --human-readable       with -l, print sizes in human readable format (e.g., 1K 234M 2G)
+;= ::  -N, --literal              print entry names without quoting
+;= ::  -v                         natural sort of (version) numbers within text
+;= ::  --color[=WHEN]             colorize the output. WHEN defaults to 'always' or can be 'never' or 'auto'
+;= ::  --format=WORD              long -l, single-column -1, vertical -C
+;= ::  --time-style=STYLE         STYLE: full-iso, long-iso, iso, locale, +FORMAT
+;= ::  --sort=WORD                sort by WORD instead of name: none (-U), size (-S), time (-t), version (-v), extension (-X)
+;= ::  -g                         like -l, but do not list owner
+;= ::  -o                         like -l, but do not list group information
+ls=ls -AFhNv -go --color=auto --sort=none --time-style=long-iso --format=vertical $*
+ll=ls -AFhNv -go --color=auto --sort=none --time-style=long-iso --format=long $*
 
 dir=dir /A /N $*
 dib=dir /A /B /N $*
-did=dir /A /D /N $*
 
 clear=cls $*
 e.=explorer .

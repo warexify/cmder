@@ -3,7 +3,7 @@
 
 ###############################################################################
 # Set home directory
-# export HOME=/root
+#export HOME=/root
 
 ###############################################################################
 # Source the user's bashrc if it exists
@@ -60,7 +60,7 @@ fi
 # export PROMPT_COMMAND
 # Set Prompt
 export PS1="\[\n\]\[\e[0;37m\][Path:\[\e[1;34m\] \w\[\e[0;37m\]]\n\[\e[1;\`if [[ \$? = "0" ]]; then echo "32m"; else echo "31m"; fi\`\][\u@\h] \[\e[0;37m\]λ \[\e[0m\]";
-export PS2="\[\e[1;37m\]> \[\e[0m\]"
+export PS2="\[\e[1;37m\]> \[\e[0m\]";
 
 ###############################################################################
 # Set the title for the window

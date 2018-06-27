@@ -1,43 +1,47 @@
 ###############################################################################
 # User dependent .aliases file
-
 ###############################################################################
 # Some example alias instructions
 # If these are enabled they will be used instead of any instructions
 # they may mask.  For example, alias rm='rm -i' will mask the rm
 # application.  To override the alias instruction use a \ before, ie
 # \rm will call the real rm not the alias.
-
+#
 # Interactive operation...
 # alias rm='rm -i'
 # alias cp='cp -i'
 # alias mv='mv -i'
-
-# Default to human readable figures
-# alias df='df -h'
-# alias du='du -h'
-
-# Misc :)
-# alias less='less -r'                          # raw control characters
-# alias whence='type -a'                        # where, of a sort
-# alias grep='grep --color'                     # show differences in colour
-# alias egrep='egrep --color=auto'              # show differences in colour
-# alias fgrep='fgrep --color=auto'              # show differences in colour
-
 ###############################################################################
-alias df='df -h'                                # Default to human readable figures
-alias du='du -h'                                # Default to human readable figures
 
-alias grep='grep --color=auto'                  # show differences in colour
+# Define aliases
+alias df='df -h'                          # Default to human readable figures
+alias du='du -h'                          # Default to human readable figures
 
-alias ls='ls -1Ahlpv --color=auto'              # ls long listing of all files except . and .. with color, human readable
-alias dir='ls -1Ahlpv --color=auto'             # ls long listing of all files except . and .. with color, human readable
+alias grep='grep --color=auto'            # show differences in colour
+alias egrep='egrep --color=auto'          # show differences in colour
+alias fgrep='fgrep --color=auto'          # show differences in colour
 
-alias ll='ls -1AChpv --color=auto'              # ls multi column listing of all files except . and .. with color
-alias dl='ls -1AChpv --color=auto'              # ls multi column listing of all files except . and .. with color
+# ls --help
+#  -A, --almost-all           do not list implied . and ..
+#  -F, --classify             append indicator (one of */=>@|) to entries
+#  -h, --human-readable       with -l, print sizes in human readable format (e.g., 1K 234M 2G)
+#  -N, --literal              print entry names without quoting
+#  -v                         natural sort of (version) numbers within text
+#  --color[=WHEN]             colorize the output. WHEN defaults to 'always' or can be 'never' or 'auto'
+#  --format=WORD              long -l, single-column -1, vertical -C
+#  --time-style=STYLE         STYLE: full-iso, long-iso, iso, locale, +FORMAT
+#  --sort=WORD                sort by WORD instead of name: none (-U), size (-S), time (-t), version (-v), extension (-X)
+#  -g                         like -l, but do not list owner
+#  -o                         like -l, but do not list group informationalias ls='ls -AFhN --color=auto --time-style=long-iso --format=vertical'
+alias ls='ls -AFhNv --color=auto --time-style=long-iso --format=vertical'
+alias dir='ls -AFhNv --color=auto --time-style=long-iso --format=vertical'
+alias ll='ls -AFhNv --color=auto --time-style=long-iso --format=long'
 
-alias cls='clear'                               # create cls command
+# Displays what is the command behind an alias
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+
+alias cls='clear'                         # create cls command
 alias md=mkdir
 alias rd=rmdir
-alias root='sudo su -'                          # shortcut
-alias vi='vim'                                  # Use vim over vi
+alias root='su -'                         # shortcut
+alias vi='vim'                            # Use vim over vi
