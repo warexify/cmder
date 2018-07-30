@@ -20,9 +20,8 @@ It has a modular architecture that allows anyone to add and improve the installe
               Scoop helps you get the programs you need, with a minimal amount of point-and-clicking.
 ----------------------------------------------------------------------------------------------------*/
 Section /o "Scoop" section_scoop
-  nsExec::ExecToStack "Powershell \
-              iex (new-object net.webclient).downloadstring('https://get.scoop.sh') \
-           "
+  nsExec::ExecToStack "Powershell Set-ExecutionPolicy RemoteSigned -scope CurrentUser"
+  nsExec::ExecToStack "Powershell Set-ExecutionPolicy Bypass -Scope Process -Force; iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"
 SectionEnd
 
 LangString desc_scoop ${LANG_ENGLISH} "A command-line installer for Windows. Looking for familiar Unix tools? Tired of Powershell’s Verb-Noun verbosity? Scoop helps you get the programs you need, with a minimal amount of point-and-clicking."

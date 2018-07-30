@@ -20,9 +20,7 @@ It has a modular architecture that allows anyone to add and improve the installe
               when software is included in the package, but can easily download resources.
 ----------------------------------------------------------------------------------------------------*/
 Section "Chocolatey" section_chocolatey
-  nsExec::ExecToStack "Powershell \
-              iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex \
-           "
+  nsExec::ExecToStack "Powershell Set-ExecutionPolicy Bypass -Scope Process -Force; iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex"
 SectionEnd
 
 LangString desc_chocolatey ${LANG_ENGLISH} "The package manager for Windows. Easily manage all aspects of Windows software (installation, configuration, upgrade, and uninstallation). Chocolatey works best when software is included in the package, but can easily download resources."
