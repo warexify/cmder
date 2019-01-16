@@ -30,7 +30,7 @@ SET package_list=%5
 SET root=%2
 SET mode=%6
 
-SET site=ftp://mirrors.sonic.net/cygwin/
+SET site=http://mirrors.sonic.net/cygwin/
 :: define the list separator
 SET separator=,
 
