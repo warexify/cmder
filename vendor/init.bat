@@ -154,7 +154,7 @@ if "%CMDER_CLINK%" == "1" (
   %lib_console% verbose_output "WARNING: Incompatible 'ComSpec/Shell' Detetected Skipping Clink Injection!"
 )
 
-:: Prepare for git-for-windows
+:: Prepare for git
 
 :: I do not even know, copypasted from their .bat
 set PLINK_PROTOCOL=ssh
@@ -169,7 +169,7 @@ setlocal enabledelayedexpansion
 if defined GIT_INSTALL_ROOT (
     if exist "%GIT_INSTALL_ROOT%\cmd\git.exe" goto :SPECIFIED_GIT
 ) else if "%fast_init%" == "1" (
-    if exist "%CMDER_ROOT%\vendor\git-for-windows\cmd\git.exe" (
+    if exist "%CMDER_ROOT%\vendor\git\cmd\git.exe" (
       %lib_console% debug_output "Skipping Git Auto-Detect!"
       goto :VENDORED_GIT
     )
@@ -178,7 +178,7 @@ if defined GIT_INSTALL_ROOT (
 %lib_console% debug_output init.bat "Looking for Git install root..."
 
 :: get the version information for vendored git binary
-%lib_git% read_version VENDORED "%CMDER_ROOT%\vendor\git-for-windows\cmd"
+%lib_git% read_version VENDORED "%CMDER_ROOT%\vendor\git\cmd"
 %lib_git% validate_version VENDORED %GIT_VERSION_VENDORED%
 
 :: check if git is in path...
@@ -231,8 +231,8 @@ for /F "delims=" %%F in ('where git.exe 2^>nul') do (
 
 :: our last hope: our own git...
 :VENDORED_GIT
-if exist "%CMDER_ROOT%\vendor\git-for-windows" (
-    set "GIT_INSTALL_ROOT=%CMDER_ROOT%\vendor\git-for-windows"
+if exist "%CMDER_ROOT%\vendor\git" (
+    set "GIT_INSTALL_ROOT=%CMDER_ROOT%\vendor\git"
     %lib_console% debug_output "Using vendored Git '!GIT_VERSION_VENDORED!' from '!GIT_INSTALL_ROOT!..."
     goto :CONFIGURE_GIT
 ) else (
@@ -365,7 +365,7 @@ if "%CMDER_ALIASES%" == "1" (
 :: Add aliases to the environment
 call "%user_aliases%"
 
-:: See vendor\git-for-windows\README.portable for why we do this
+:: See vendor\git\README.portable for why we do this
 :: Basically we need to execute this post-install.bat because we are
 :: manually extracting the archive rather than executing the 7z sfx
 if exist "%GIT_INSTALL_ROOT%\post-install.bat" (

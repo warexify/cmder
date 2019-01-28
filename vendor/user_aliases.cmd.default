@@ -4,7 +4,8 @@
 ;= rem In batch mode, jump to the end of the file
 ;= goto:eof
 ;= Add aliases below here
-e.=explorer .
+o.=explorer .
+o=explorer $*
 gl=git log --oneline --all --graph --decorate  $*
 ls=ls --show-control-chars -F --color $*
 pwd=cd
@@ -13,3 +14,6 @@ history=cat -n "%CMDER_ROOT%\config\.history"
 unalias=alias /d $1
 vi=vim $*
 cmderr=cd /d "%CMDER_ROOT%"
+..=cd ..
+~=cd %USERPROFILE%
+vs="%VSINSTALLDIR%\Common7\IDE\devenv.exe" $*

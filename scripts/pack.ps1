@@ -22,7 +22,7 @@
     https://github.com/cmderdev/cmder - Project Home
 #>
 
-[CmdletBinding(SupportsShouldProcess=$true)]
+[CmdletBinding(SupportsShouldProcess = $true)]
 Param(
     # CmdletBinding will give us;
     # -verbose switch to turn on logging and
@@ -42,7 +42,7 @@ Ensure-Executable "7z"
 $targets = @{
     "cmder.zip" = $null;
     "cmder.7z" = $null;
-    "cmder_mini.zip" = "-x!`"vendor\git-for-windows`"";
+    "cmder_mini.zip" = "-x!`"vendor\git`"";
 }
 
 Delete-Existing "..\Version*"
