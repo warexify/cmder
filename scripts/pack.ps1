@@ -22,31 +22,31 @@
     https://github.com/cmderdev/cmder - Project Home
 #>
 
-[CmdletBinding(SupportsShouldProcess=$true)]
+[CmdletBinding(SupportsShouldProcess = $true)]
 Param(
     # CmdletBinding will give us;
     # -verbose switch to turn on logging and
     # -whatif switch to not actually make changes
 
     # Path to the vendor configuration source file
-    [string]$cmderRoot = "..",
+    [string]$cmderRoot = '..',
 
     # Vendor folder locaton
-    [string]$saveTo = "..\build"
+    [string]$saveTo = '..\build'
 )
 
 . "$PSScriptRoot\utils.ps1"
-$ErrorActionPreference = "Stop"
-Ensure-Executable "7z"
+$ErrorActionPreference = 'Stop'
+Ensure-Executable '7z'
 
 $targets = @{
-    "cmder.zip" = $null;
-    "cmder.7z" = $null;
-    "cmder_mini.zip" = "-x!`"vendor\git-for-windows`"";
+    'cmder.zip' = $null;
+    'cmder.7z' = $null;
+    'cmder_mini.zip' = "-x!`"vendor\git`"";
 }
 
-Delete-Existing "..\Version*"
-Delete-Existing "..\build\*"
+Delete-Existing '..\Version*'
+Delete-Existing '..\build\*'
 
 $version = Get-VersionStr
 (New-Item -ItemType file "$cmderRoot\Version $version") | Out-Null
@@ -54,5 +54,5 @@ $version = Get-VersionStr
 foreach ($t in $targets.GetEnumerator()) {
     Create-Archive $cmderRoot "$saveTo\$($t.Name)" $t.Value
     $hash = (Digest-Hash "$saveTo\$($t.Name)")
-    Add-Content -path "$saveTo\hashes.txt" -value ($t.Name + ' ' + $hash)
+    Add-Content -Path "$saveTo\hashes.txt" -Value ($t.Name + ' ' + $hash)
 }

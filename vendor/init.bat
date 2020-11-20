@@ -176,7 +176,7 @@ if "%CMDER_CONFIGURED%" GTR "1" (
   goto USER_CONFIG_START
 )
 
-:: Prepare for git-for-windows
+:: Prepare for git
 
 :: I do not even know, copypasted from their .bat
 set PLINK_PROTOCOL=ssh
@@ -190,7 +190,7 @@ if not defined TERM set TERM=cygwin
 if defined GIT_INSTALL_ROOT (
     if exist "%GIT_INSTALL_ROOT%\cmd\git.exe" goto :SPECIFIED_GIT
 ) else if "%fast_init%" == "1" (
-    if exist "%CMDER_ROOT%\vendor\git-for-windows\cmd\git.exe" (
+    if exist "%CMDER_ROOT%\vendor\git\cmd\git.exe" (
       %print_debug% "Skipping Git Auto-Detect!"
       goto :VENDORED_GIT
     )
@@ -199,7 +199,7 @@ if defined GIT_INSTALL_ROOT (
 %print_debug% init.bat "Looking for Git install root..."
 
 :: get the version information for vendored git binary
-%lib_git% read_version VENDORED "%CMDER_ROOT%\vendor\git-for-windows\cmd" 2>nul
+%lib_git% read_version VENDORED "%CMDER_ROOT%\vendor\git\cmd" 2>nul
 %lib_git% validate_version VENDORED %GIT_VERSION_VENDORED%
 
 :: check if git is in path...
@@ -216,8 +216,8 @@ for /F "delims=" %%F in ('where git.exe 2^>nul') do (
 
 :: our last hope: our own git...
 :VENDORED_GIT
-if exist "%CMDER_ROOT%\vendor\git-for-windows" (
-    set "GIT_INSTALL_ROOT=%CMDER_ROOT%\vendor\git-for-windows"
+if exist "%CMDER_ROOT%\vendor\git" (
+    set "GIT_INSTALL_ROOT=%CMDER_ROOT%\vendor\git"
     %print_debug% "Using vendored Git '%GIT_VERSION_VENDORED%'..."
     goto :CONFIGURE_GIT
 ) else (
@@ -349,7 +349,7 @@ call "%user_aliases%"
 
 if "%CMDER_CONFIGURED%" gtr "1" goto CMDER_CONFIGURED
 
-:: See vendor\git-for-windows\README.portable for why we do this
+:: See vendor\git\README.portable for why we do this
 :: Basically we need to execute this post-install.bat because we are
 :: manually extracting the archive rather than executing the 7z sfx
 if exist "%GIT_INSTALL_ROOT%\post-install.bat" (

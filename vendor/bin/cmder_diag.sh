@@ -1,3 +1,4 @@
+#shellcheck shell=bash
 echo ------------------------------------
 echo ls -la "$CMDER_ROOT"
 echo ------------------------------------

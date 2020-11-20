@@ -1,6 +1,6 @@
 # Cmder
 
-[![Join the chat at https://gitter.im/cmderdev/cmder](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cmderdev/cmder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://ci.appveyor.com/api/projects/status/github/cmderdev/cmder?branch=master&svg=true)](https://ci.appveyor.com/project/MartiUK/cmder)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/warexify/cmder?branch=develop&svg=true)](https://ci.appveyor.com/project/warexify/cmder)
 
 Cmder is a **software package** created out of pure frustration over absence of usable console emulator on Windows. It is based on [ConEmu](https://conemu.github.io/) with *major* config overhaul, comes with a Monokai color scheme, amazing [clink](https://github.com/mridgers/clink) (further enhanced by [clink-completions](https://github.com/vladimir-kotikov/clink-completions)) and a custom prompt layout.
 
@@ -15,13 +15,13 @@ The Cmder's user interface is also designed to be more eye pleasing, and you can
 ## Installation
 ### Single User Portable Config
 
-1. Download the [latest release](https://github.com/cmderdev/cmder/releases/)
+1. Download the [latest release](https://github.com/warexify/cmder/releases/)
 2. Extract the archive. *Note: This path should not be `C:\Program Files` or anywhere else that would require Administrator access for modifying configuration files*
 3. (optional) Place your own executable files into the `%cmder_root%\bin` folder to be injected into your PATH.
 4. Run `Cmder.exe`
 
 ### Shared Cmder install with Non-Portable Individual User Config
-1. Download the [latest release](https://github.com/cmderdev/cmder/releases/)
+1. Download the [latest release](https://github.com/warexify/cmder/releases/)
 2. Extract the archive to a shared location.
 3. (optional) Place your own executable files and custom app folders into the `%cmder_root%\bin`. See: [bin/README.md](./bin/Readme.md)
    - This folder to be injected into your PATH by default.
@@ -52,7 +52,7 @@ The Cmder's user interface is also designed to be more eye pleasing, and you can
 
 
 | Argument                  | Description                                                                              |
-| -------------------       | -----------------------------------------------------------------------                  |
+| ------------------------- | ---------------------------------------------------------------------------------------- |
 | `/C [user_root_path]`     | Individual user Cmder root folder.  Example: `%userprofile%\cmder_config`                |
 | `/M`                      | Use `conemu-%computername%.xml` for ConEmu settings storage instead of `user_conemu.xml` |
 | `/REGISTER [ALL, USER]`   | Register a Windows Shell Menu shortcut.                                                  |
@@ -103,7 +103,7 @@ _(Some shortcuts are not yet documented, though they exist - please document the
 You can open multiple tabs each containing one of the following shells:
 
 | Task                | Shell            | Description                                                                                                  |
-| ----                | -----            | -----------                                                                                                  |
+| ------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------ |
 | Cmder               | `cmd.exe`        | Windows `cmd.exe` shell enhanced with Git, Git aware prompt, Clink (GNU Readline), and Aliases.              |
 | Cmder as Admin      | `cmd.exe`        | Administrative Windows `cmd.exe` Cmder shell.                                                                |
 | PowerShell          | `powershell.exe` | Windows PowerShell enhanced with Git and Git aware prompt .                                                  |
@@ -115,7 +115,7 @@ You can open multiple tabs each containing one of the following shells:
 
 Cmder, PowerShell, and Bash tabs all run on top of the Windows Console API and work as you might expect in Cmder with access to use ConEmu's color schemes, key bindings and other settings defined in the ConEmu Settings dialog.
 
-⚠ *NOTE:* Only the full edition of Cmder comes with a pre-installed bash, using a vendored [git-for-windows](https://gitforwindows.org/) installation. The pre-configured Bash tabs may not work on Cmder mini edition without additional configuration.
+⚠ *NOTE:* Only the full edition of Cmder comes with a pre-installed bash, using a vendored [git](https://gitforwindows.org/) installation. The pre-configured Bash tabs may not work on Cmder mini edition without additional configuration.
 
 You may however, choose to use an external installation of bash, such as Microsoft's [Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (called WSL) or the [Cygwin](https://cygwin.com/) project which provides POSIX support on windows.
 
@@ -153,12 +153,12 @@ You may find some Monokai color schemes for mintty to match Cmder [here](https:/
 ##### Command Line Arguments for `init.bat`
 
 | Argument                        | Description                                                                                                                                        | Default                                |
-| -----------------------------   | ----------------------------------------------------------------------------------------------                                                     | -------------------------------------  |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | `/c [user cmder root]`          | Enables user bin and config folders for 'Cmder as admin' sessions due to non-shared environment.                                                   | not set                                |
 | `/d`                            | Enables debug output.                                                                                                                              | not set                                |
 | `/f`                            | Enables Cmder Fast Init Mode. This disables some features, see pull request [#1492](https://github.com/cmderdev/cmder/pull/1942) for more details. | not set                                |
-| `/t`                            | Enables Cmder Timed Init Mode. This displays the time taken run init scripts | not set                                |
-| `/git_install_root [file path]` | User specified Git installation root path.                                                                                                         | `%CMDER_ROOT%\vendor\Git-for-Windows`  |
+| `/t`                            | Enables Cmder Timed Init Mode. This displays the time taken run init scripts                                                                       | not set                                |
+| `/git_install_root [file path]` | User specified Git installation root path.                                                                                                         | `%CMDER_ROOT%\vendor\git`              |
 | `/home [home folder]`           | User specified folder path to set `%HOME%` environment variable.                                                                                   | `%userprofile%`                        |
 | `/max_depth [1-5]`              | Define max recurse depth when adding to the path for `%cmder_root%\bin` and `%cmder_user_bin%`                                                     | 1                                      |
 | `/nix_tools [0-2]`              | Define how `*nix` tools are added to the path.  Prefer Windows Tools: 1, Prefer *nix Tools: 2, No `/usr/bin` in `%PATH%`: 0                        | 1                                      |
@@ -170,21 +170,21 @@ You may find some Monokai color schemes for mintty to match Cmder [here](https:/
 ### Cmder Shell User Config
 Single user portable configuration is possible using the cmder specific shell config files.  Edit the below files to add your own configuration:
 
-| Shell         | Cmder Portable User Config                |
-| ------------- | ----------------------------------------- |
-| Cmder         | `%CMDER_ROOT%\config\user_profile.cmd`    |
-| PowerShell    | `$ENV:CMDER_ROOT\config\user_profile.ps1` |
-| Bash/Mintty   | `$CMDER_ROOT/config/user_profile.sh`      |
+| Shell       | Cmder Portable User Config                |
+| ----------- | ----------------------------------------- |
+| Cmder       | `%CMDER_ROOT%\config\user_profile.cmd`    |
+| PowerShell  | `$env:CMDER_ROOT\config\user_profile.ps1` |
+| Bash/Mintty | `$CMDER_ROOT/config/user_profile.sh`      |
 
 Note: Bash and Mintty sessions will also source the `$HOME/.bashrc` file if it exists after it sources `$CMDER_ROOT/config/user_profile.sh`.
 
 You can write `*.cmd|*.bat`, `*.ps1`, and `*.sh` scripts and just drop them in the `%CMDER_ROOT%\config\profile.d` folder to add startup config to Cmder.
 
-| Shell         | Cmder `Profile.d` Scripts                          |
-| ------------- | -------------------------------------------------- |
-| Cmder         | `%CMDER_ROOT%\config\profile.d\*.bat and *.cmd`    |
-| PowerShell    | `$ENV:CMDER_ROOT\config\profile.d\*.ps1`           |
-| Bash/Mintty   | `$CMDER_ROOT/config/profile.d/*.sh`                |
+| Shell       | Cmder `Profile.d` Scripts                       |
+| ----------- | ----------------------------------------------- |
+| Cmder       | `%CMDER_ROOT%\config\profile.d\*.bat and *.cmd` |
+| PowerShell  | `$env:CMDER_ROOT\config\profile.d\*.ps1`        |
+| Bash/Mintty | `$CMDER_ROOT/config/profile.d/*.sh`             |
 
 #### Git Status Opt-Out
 
@@ -221,7 +221,7 @@ Bash shells support simple and complex aliases with optional parameters natively
 
 To make an alias and/or any other profile settings permanent add it to one of the following:
 
-Note: These are loaded in this order by `$CMDER_ROOT/vendor/git-for-windows/etc/profile.d/cmder.sh`.  Anything stored in `$CMDER_ROOT` will be a portable setting and will follow cmder to another machine.
+Note: These are loaded in this order by `$CMDER_ROOT/vendor/git/etc/profile.d/cmder.sh`.  Anything stored in `$CMDER_ROOT` will be a portable setting and will follow cmder to another machine.
 
 * `$CMDER_ROOT/config/profile.d/*.sh`
 * `$CMDER_ROOT/config/user_profile.sh`
@@ -234,14 +234,14 @@ PowerShell has native simple alias support, for example `[new-alias | set-alias]
 
 To make an alias and/or any other profile settings permanent add it to one of the following:
 
-Note: These are loaded in this order by `$ENV:CMDER_ROOT\vendor\user_profile.ps1`.  Anything stored in `$ENV:CMDER_ROOT` will be a portable setting and will follow cmder to another machine.
+Note: These are loaded in this order by `$env:CMDER_ROOT\vendor\user_profile.ps1`.  Anything stored in `$env:CMDER_ROOT` will be a portable setting and will follow cmder to another machine.
 
-* `$ENV:CMDER_ROOT\config\profile.d\*.ps1`
-* `$ENV:CMDER_ROOT\config\user_profile.ps1`
+* `$env:CMDER_ROOT\config\profile.d\*.ps1`
+* `$env:CMDER_ROOT\config\user_profile.ps1`
 
 ### SSH Agent
 
-To start the vendored SSH agent simply call `start-ssh-agent`, which is in the `vendor/git-for-windows/cmd` folder.
+To start the vendored SSH agent simply call `start-ssh-agent`, which is in the `vendor/git/cmd` folder.
 
 If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"` in `%CMDER_ROOT%/config/user_profile.cmd` (usually just uncomment it).
 
@@ -340,7 +340,7 @@ The process of upgrading Cmder depends on the version/build you are currently ru
 
 If you have a `[cmder_root]/config/user[-|_]conemu.xml`, you are running a newer version of Cmder, follow the below process:
 
-1. Exit all Cmder sessions and relaunch `[cmder_root]/cmder.exe`, this backs up your existing `[cmder_root]/vendor/conemu-maximus5/conemu.xml` to `[cmder_root]/config/user[-|_]conemu.xml`.
+1. Exit all Cmder sessions and relaunch `[cmder_root]/cmder.exe`, this backs up your existing `[cmder_root]/vendor/conemu/conemu.xml` to `[cmder_root]/config/user[-|_]conemu.xml`.
 
    * The `[cmder_root]/config/user[-|_]conemu.xml` contains any custom settings you have made using the 'Setup Tasks' settings dialog.
 
@@ -353,7 +353,7 @@ If you have a `[cmder_root]/config/user[-|_]conemu.xml`, you are running a newer
 
 If you do not have a `[cmder_root]/config/user[-|_]conemu.xml`, you are running an older version of cmder, follow the below process:
 
-1. Exit all Cmder sessions and backup `[cmder_root]/vendor/conemu-maximus5/conemu.xml` to `[cmder_root]/config/user[-|_]conemu.xml`.
+1. Exit all Cmder sessions and backup `[cmder_root]/vendor/conemu/conemu.xml` to `[cmder_root]/config/user[-|_]conemu.xml`.
 
 2. Backup any files you have manually edited under `[cmder_root]/vendor`.
 
@@ -366,7 +366,7 @@ If you do not have a `[cmder_root]/config/user[-|_]conemu.xml`, you are running 
 
 You can download builds of the current development branch by going to AppVeyor via the following link:
 
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/cmderdev/cmder?svg=True)](https://ci.appveyor.com/project/MartiUK/cmder/branch/master/artifacts)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/warexify/cmder?svg=True)](https://ci.appveyor.com/project/warexify/cmder/branch/develop/artifacts)
 
 ## License
 

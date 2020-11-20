@@ -1,37 +1,37 @@
-write-host ------------------------------------
-write-host get-childitem "$env:CMDER_ROOT"
-write-host ------------------------------------
-get-childitem "$env:CMDER_ROOT"
+Write-Host ------------------------------------
+Write-Host get-childitem "$env:CMDER_ROOT"
+Write-Host ------------------------------------
+Get-ChildItem "$env:CMDER_ROOT"
 
-write-host ''
-write-host ------------------------------------
-write-host get-childitem "$env:CMDER_ROOT/vendor"
-write-host ------------------------------------
-get-childitem "$env:CMDER_ROOT/vendor"
+Write-Host ''
+Write-Host ------------------------------------
+Write-Host get-childitem "$env:CMDER_ROOT/vendor"
+Write-Host ------------------------------------
+Get-ChildItem "$env:CMDER_ROOT/vendor"
 
-write-host ''
-write-host ------------------------------------
-write-host get-childitem -s "$env:CMDER_ROOT/bin"
-write-host ------------------------------------
-get-childitem -s "$env:CMDER_ROOT/bin"
+Write-Host ''
+Write-Host ------------------------------------
+Write-Host get-childitem -s "$env:CMDER_ROOT/bin"
+Write-Host ------------------------------------
+Get-ChildItem -s "$env:CMDER_ROOT/bin"
 
-write-host ''
-write-host ------------------------------------
-write-host get-childitem -s "$env:CMDER_ROOT/config"
-write-host ------------------------------------
-get-childitem -s "$env:CMDER_ROOT/config"
+Write-Host ''
+Write-Host ------------------------------------
+Write-Host get-childitem -s "$env:CMDER_ROOT/config"
+Write-Host ------------------------------------
+Get-ChildItem -s "$env:CMDER_ROOT/config"
 
-write-host ''
-write-host ------------------------------------
-write-host get-childitem env:
-write-host ------------------------------------
-get-childitem env: |ft -autosize -wrap
+Write-Host ''
+Write-Host ------------------------------------
+Write-Host get-childitem env:
+Write-Host ------------------------------------
+Get-ChildItem env: | Format-Table -AutoSize -Wrap
 
-write-host ''
-write-host ------------------------------------
-write-host get-command git
-write-host ------------------------------------
-get-command git
+Write-Host ''
+Write-Host ------------------------------------
+Write-Host get-command git
+Write-Host ------------------------------------
+Get-Command git
 
 write-host ''
 write-host ------------------------------------
